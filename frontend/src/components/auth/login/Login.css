@@ -1,0 +1,274 @@
+/* ============================================
+   BONEMIA — Login
+   Login.css
+   ============================================ */
+
+.lg-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fafafa;
+  padding: var(--spacing-6);
+}
+
+/* ---- Card ---- */
+.lg-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-4);
+  width: 100%;
+  max-width: 420px;
+  background: var(--color-white);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-10) var(--spacing-8);
+}
+
+/* ---- Logo ---- */
+.lg-logo {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--spacing-2);
+}
+
+.lg-logo__img {
+  height: 32px;
+  object-fit: contain;
+}
+
+/* ---- Texts ---- */
+.lg-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.lg-subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  text-align: center;
+  line-height: 1.6;
+  margin-top: calc(-1 * var(--spacing-2));
+}
+
+/* ---- Field ---- */
+.lg-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  width: 100%;
+}
+
+.lg-field__label {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.lg-field__input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--color-border);
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  background: var(--color-white);
+  outline: none;
+  transition: border-color var(--transition-fast);
+  box-sizing: border-box;
+}
+
+.lg-field__input:focus {
+  border-color: var(--color-primary);
+}
+
+.lg-field__input--error {
+  border-color: #ef4444;
+}
+
+.lg-field__error {
+  font-size: var(--font-size-xs);
+  color: #ef4444;
+  text-align: center;
+}
+
+/* ---- Submit ---- */
+.lg-btn-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-full);
+  border: none;
+  background: var(--color-primary);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-white);
+  cursor: pointer;
+  transition: opacity var(--transition-fast);
+  min-height: 46px;
+}
+
+.lg-btn-submit:hover:not(:disabled) {
+  opacity: 0.88;
+}
+
+.lg-btn-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ---- Register link ---- */
+.lg-register-link {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.lg-register-link__a {
+  color: var(--color-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.lg-register-link__a:hover {
+  text-decoration: underline;
+}
+
+/* ---- Back ---- */
+.lg-back {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  padding: 0;
+  transition: color var(--transition-fast);
+}
+
+.lg-back:hover {
+  color: var(--color-text);
+}
+
+.lg-back:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ---- OTP icon ---- */
+.lg-otp__icon {
+  margin-bottom: var(--spacing-1);
+}
+
+.lg-otp__email {
+  color: var(--color-text);
+}
+
+/* ---- OTP fields ---- */
+.lg-otp__fields {
+  display: flex;
+  gap: var(--spacing-2);
+  justify-content: center;
+  width: 100%;
+}
+
+.lg-otp__input {
+  width: 44px;
+  height: 52px;
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-white);
+  outline: none;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+  caret-color: var(--color-primary);
+}
+
+.lg-otp__input:focus {
+  border-color: var(--color-primary);
+  background: #fff9f7;
+}
+
+.lg-otp__input--filled {
+  border-color: var(--color-primary);
+}
+
+.lg-otp__input--error {
+  border-color: #ef4444;
+}
+
+/* ---- Resend ---- */
+.lg-btn-resend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--color-border);
+  background: var(--color-white);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+  min-height: 46px;
+}
+
+.lg-btn-resend:hover:not(:disabled) {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.lg-btn-resend:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ---- Spinner ---- */
+.lg-spinner {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2.5px solid rgba(255, 255, 255, 0.4);
+  border-top-color: var(--color-white);
+  border-radius: 50%;
+  animation: lg-spin 0.7s linear infinite;
+}
+
+.lg-spinner--primary {
+  border-color: rgba(255, 92, 26, 0.3);
+  border-top-color: var(--color-primary);
+}
+
+@keyframes lg-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 480px) {
+  .lg-card {
+    padding: var(--spacing-8) var(--spacing-5);
+    border: none;
+    background: transparent;
+  }
+
+  .lg-otp__input {
+    width: 38px;
+    height: 46px;
+    font-size: 1.1rem;
+  }
+}

@@ -1,0 +1,172 @@
+/* ============================================
+   BONEMIA — Footer
+   Footer.css
+   ============================================ */
+
+.ft-footer {
+  width: 100%;
+  background-color: var(--color-dark);
+  padding: var(--spacing-16) 0 0;
+}
+
+.ft-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-12);
+}
+
+/* ---- Top ---- */
+.ft-top {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: var(--spacing-12);
+  align-items: start;
+}
+
+/* ---- Brand ---- */
+.ft-brand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.ft-brand__logo {
+  height: 30px;
+  width: auto;
+  object-fit: contain;
+}
+
+.ft-brand__desc {
+  font-size: var(--font-size-sm);
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.7;
+}
+
+.ft-feedback-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 1.2rem;
+  border-radius: var(--radius-full);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color var(--transition-fast), color var(--transition-fast), background var(--transition-fast);
+  align-self: flex-start;
+}
+
+.ft-feedback-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background: rgba(255, 107, 43, 0.08);
+}
+
+/* ---- Links grid ---- */
+.ft-links {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-8);
+}
+
+/* ---- Column ---- */
+.ft-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+
+.ft-col__title {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--spacing-1);
+}
+
+.ft-col__link {
+  font-size: var(--font-size-sm);
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 500;
+  transition: color var(--transition-fast);
+}
+
+.ft-col__link:hover {
+  color: var(--color-white);
+}
+
+/* ---- Bottom ---- */
+.ft-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-5) 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ft-bottom__copy {
+  font-size: var(--font-size-xs);
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.ft-bottom__langs {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.ft-lang {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.35);
+  transition: color var(--transition-fast);
+}
+
+.ft-lang:hover {
+  color: var(--color-white);
+}
+
+.ft-lang--active {
+  color: var(--color-white);
+}
+
+.ft-lang-sep {
+  color: rgba(255, 255, 255, 0.2);
+  font-size: var(--font-size-xs);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 860px) {
+  .ft-top {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-8);
+  }
+}
+
+@media (max-width: 580px) {
+  .ft-footer {
+    padding: var(--spacing-12) 0 0;
+  }
+
+  .ft-links {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-6);
+  }
+
+  .ft-bottom {
+    flex-direction: column;
+    gap: var(--spacing-3);
+    text-align: center;
+  }
+}
+
+@media (max-width: 360px) {
+  .ft-links {
+    grid-template-columns: 1fr;
+  }
+}

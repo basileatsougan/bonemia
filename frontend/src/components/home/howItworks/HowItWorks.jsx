@@ -46,7 +46,7 @@ const HowItWorks = () => {
   const { t } = useTranslation();
 
   return (
-    <section className="hiw-section">
+    <section className="hiw-section" id="comment-ca-marche">
       <div className="hiw-container container">
 
         {/* Badge */}

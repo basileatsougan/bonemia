@@ -3,8 +3,13 @@
     "abonnements": "Subscriptions",
     "comment_ca_marche": "How it works",
     "aide_faq": "Help / FAQ",
-    "connexion": "Log in",
-    "creer_compte": "Create an account"
+    "connexion": "Login",
+    "creer_compte": "Create account",
+    "logout": "Log out",
+    "logout_title": "Log out?",
+    "logout_text": "You will be redirected to the home page. You can log back in at any time.",
+    "logout_cancel": "Cancel",
+    "logout_confirm": "Log out"
   },
   "hero": {
     "badge": "+100 members already saving",
@@ -12,11 +17,11 @@
     "title_accent": "subscriptions",
     "title_line2": "for less",
     "subtitle": "Canva, Netflix, Spotify, ChatGPT, Claude code… We manage subscriptions so you can access them at a more affordable price, starting today.",
-    "cta": "Discover subscriptions",
+    "cta": "Explore subscriptions",
     "stats": {
       "membres": "active members",
       "economie": "maximum savings",
-      "abonnements": "subscriptions available",
+      "abonnements": "available subscriptions",
       "support": "support available"
     }
   },
@@ -27,23 +32,23 @@
     "title_end": "in 3 steps.",
     "step1": {
       "title": "Choose your service",
-      "desc": "Browse our catalog of 30+ premium services. Netflix, Spotify, ChatGPT… everything is there."
+      "desc": "Browse our catalog of over 30 premium services. Netflix, Spotify, ChatGPT… it's all there."
     },
     "step2": {
       "title": "Join a group",
-      "desc": "Find an existing group or create your own. All members are verified. Your safety is our obsession."
+      "desc": "Find an existing group or create your own. All members are verified. Your security, our obsession."
     },
     "step3": {
       "title": "Enjoy and save",
-      "desc": "Access your service immediately and save up to 75% every month. It's that simple."
+      "desc": "Get immediate access to your service and save up to 75% every month. It's that simple."
     }
   },
   "fs": {
     "badge": "Full catalog",
     "title_line1": "Your",
     "title_accent": "subscriptions",
-    "title_line2": "and digital",
-    "title_line3": "essential services.",
+    "title_line2": "and services",
+    "title_line3": "essential digital tools.",
     "card_cta": "Access",
     "cta": "Discover more subscriptions",
     "plans": {
@@ -51,7 +56,7 @@
         "category": "Streaming",
         "badge": "−75% savings",
         "name": "Netflix Premium",
-        "desc": "Access the full Netflix catalog in Ultra HD on all your screens. Series, movies.",
+        "desc": "Access the full Netflix catalog in Ultra HD quality on all your screens. Series, movies.",
         "price": "3,750 CFA",
         "original": "15,000 CFA",
         "period": "/ month"
@@ -60,7 +65,7 @@
         "category": "Music",
         "badge": "−75% savings",
         "name": "Spotify Family",
-        "desc": "Listen to 100 million tracks ad-free with offline downloads included.",
+        "desc": "Listen to 100 million tracks unlimited, ad-free, with offline downloads.",
         "price": "1,200 CFA",
         "original": "5,000 CFA",
         "period": "/ month"
@@ -80,7 +85,7 @@
     "badge": "Full catalog",
     "title_line1": "Your favorite",
     "title_accent": "subscriptions,",
-    "title_line2": "at a reduced price",
+    "title_line2": "at reduced prices",
     "subtitle": "Enjoy your favorite subscriptions easily and save every month through secure sharing with trusted people.",
     "card_cta": "Access",
     "filters": {
@@ -94,7 +99,7 @@
         "category": "Streaming",
         "badge": "−75% savings",
         "name": "Netflix Premium",
-        "desc": "Access the full Netflix catalog in Ultra HD on all your screens. Series, movies.",
+        "desc": "Access the full Netflix catalog in Ultra HD quality on all your screens. Series, movies.",
         "price": "3,750 CFA",
         "original": "15,000 CFA",
         "period": "/ month"
@@ -103,7 +108,7 @@
         "category": "Music",
         "badge": "−75% savings",
         "name": "Spotify Family",
-        "desc": "Listen to 100 million tracks ad-free with offline downloads included.",
+        "desc": "Listen to 100 million tracks unlimited, ad-free, with offline downloads.",
         "price": "1,200 CFA",
         "original": "5,000 CFA",
         "period": "/ month"
@@ -116,7 +121,82 @@
         "price": "1,200 CFA",
         "original": "4,000 CFA",
         "period": "/ month"
+      },
+      "chatgpt_plusd": {
+        "category": "Artificial Intelligence",
+        "badge": "−70% savings",
+        "name": "ChatGPT Plus",
+        "desc": "Access to GPT-4o, DALL·E, document analysis and web browsing. And much more.",
+        "price": "1,200 CFA",
+        "original": "4,000 CFA",
+        "period": "/ month"
       }
     }
+  },
+  "auth": {
+    "back": "Back",
+    "register": {
+      "title": "Create an account",
+      "subtitle": "Join thousands of members saving every month.",
+      "google": "Continue with Google",
+      "or": "or",
+      "email": "Continue with email",
+      "already": "Already have an account?",
+      "login": "Log in",
+      "email_title": "Your email address",
+      "email_subtitle": "Enter your email to create your account.",
+      "email_label": "Email address",
+      "email_placeholder": "you@example.com",
+      "email_invalid": "Please enter a valid email address.",
+      "email_cta": "Create my account",
+      "confirm_title": "Check your inbox",
+      "confirm_text": "A confirmation link was sent to",
+      "confirm_text2": "Click the link to activate your account.",
+      "confirm_hint": "Can't find the email? Check your spam folder.",
+      "confirm_cta": "Go to login",
+      "resend": "Resend email",
+      "resent": "Email sent!",
+      "resend_countdown": "Resend in {{s}}s"
+    },
+    "login": {
+      "title": "Welcome back!",
+      "subtitle": "Enter your email to receive a login code.",
+      "email_label": "Email address",
+      "email_placeholder": "you@example.com",
+      "email_invalid": "Please enter a valid email address.",
+      "cta": "Send my code",
+      "no_account": "No account yet?",
+      "register": "Sign up",
+      "otp_title": "Enter your code",
+      "otp_subtitle": "A 6-digit code was sent to",
+      "otp_incomplete": "Please enter all 6 digits.",
+      "otp_cta": "Log in",
+      "resend": "Resend code",
+      "resent": "Code sent!",
+      "resend_countdown": "Resend in {{s}}s"
+    }
+  },
+  "footer": {
+    "desc": "The platform that gives you access to premium subscriptions at reduced prices, safely.",
+    "feedback_cta": "Give feedback",
+    "col_product": "Product",
+    "col_account": "Account",
+    "col_legal": "Legal",
+    "cgu": "Terms of use",
+    "confidentialite": "Privacy policy",
+    "cookies": "Cookies",
+    "rights": "All rights reserved.",
+    "feedback_title": "Your feedback helps us improve Bonemia",
+    "feedback_suggestion": "Suggestion",
+    "feedback_bug": "Report a bug",
+    "feedback_other": "Other",
+    "feedback_email_label": "Your email (optional)",
+    "feedback_email_placeholder": "you@example.com",
+    "feedback_message_label": "Your message",
+    "feedback_placeholder_suggestion": "I'd like to see...",
+    "feedback_placeholder_bug": "Describe the bug you encountered...",
+    "feedback_placeholder_other": "Your message...",
+    "feedback_submit": "Send",
+    "feedback_sent": "Thank you! Your message has been sent."
   }
 }

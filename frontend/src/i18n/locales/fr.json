@@ -4,14 +4,19 @@
     "comment_ca_marche": "Comment ça marche",
     "aide_faq": "Aide / FAQ",
     "connexion": "Connexion",
-    "creer_compte": "Créer un compte"
+    "creer_compte": "Créer un compte",
+    "logout": "Se déconnecter",
+    "logout_title": "Se déconnecter ?",
+    "logout_text": "Vous serez redirigé vers la page d'accueil. Vous pourrez vous reconnecter à tout moment.",
+    "logout_cancel": "Annuler",
+    "logout_confirm": "Se déconnecter"
   },
   "hero": {
     "badge": "+100 membres économisent déjà",
     "title_line1": "Accède aux abonnements",
     "title_accent": "premium",
     "title_line2": "pour moins cher",
-    "subtitle": "Canva, Netflix, Spotify, ChatGPT, Claud code… Nous gérons les abonnements pour vous permettre d'y accéder à un prix plus accessible, dès aujourd'hui.",
+    "subtitle": "Canva, Netflix, Spotify, ChatGPT, Claude code… Nous gérons les abonnements pour vous permettre d'y accéder à un prix plus accessible, dès aujourd'hui.",
     "cta": "Découvrir les abonnements",
     "stats": {
       "membres": "membres actifs",
@@ -116,7 +121,82 @@
         "price": "1 200 CFA",
         "original": "4 000 CFA",
         "period": "/ mois"
+      },
+      "chatgpt_plusd": {
+        "category": "Intelligence Artificielle",
+        "badge": "−70% économie",
+        "name": "ChatGPT Plus",
+        "desc": "Accès à GPT-4o, DALL·E, analyse de documents et navigation web. Et bien plus encore.",
+        "price": "1 200 CFA",
+        "original": "4 000 CFA",
+        "period": "/ mois"
       }
     }
+  },
+  "auth": {
+    "back": "Retour",
+    "register": {
+      "title": "Créer un compte",
+      "subtitle": "Rejoignez des milliers de membres qui économisent chaque mois.",
+      "google": "Continuer avec Google",
+      "or": "ou",
+      "email": "Continuer avec un e-mail",
+      "already": "Déjà un compte ?",
+      "login": "Se connecter",
+      "email_title": "Votre adresse e-mail",
+      "email_subtitle": "Entrez votre e-mail pour créer votre compte.",
+      "email_label": "Adresse e-mail",
+      "email_placeholder": "vous@exemple.com",
+      "email_invalid": "Veuillez entrer une adresse e-mail valide.",
+      "email_cta": "Créer mon compte",
+      "confirm_title": "Vérifiez votre boîte mail",
+      "confirm_text": "Un lien de confirmation a été envoyé à",
+      "confirm_text2": "Cliquez sur le lien pour activer votre compte.",
+      "confirm_hint": "Vous ne trouvez pas l'e-mail ? Vérifiez vos spams.",
+      "confirm_cta": "Aller à la connexion",
+      "resend": "Renvoyer l'e-mail",
+      "resent": "E-mail renvoyé !",
+      "resend_countdown": "Renvoyer dans {{s}}s"
+    },
+    "login": {
+      "title": "Bon retour !",
+      "subtitle": "Entrez votre e-mail pour recevoir un code de connexion.",
+      "email_label": "Adresse e-mail",
+      "email_placeholder": "vous@exemple.com",
+      "email_invalid": "Veuillez entrer une adresse e-mail valide.",
+      "cta": "Recevoir mon code",
+      "no_account": "Pas encore de compte ?",
+      "register": "S'inscrire",
+      "otp_title": "Entrez votre code",
+      "otp_subtitle": "Un code à 6 chiffres a été envoyé à",
+      "otp_incomplete": "Veuillez entrer les 6 chiffres du code.",
+      "otp_cta": "Se connecter",
+      "resend": "Renvoyer le code",
+      "resent": "Code renvoyé !",
+      "resend_countdown": "Renvoyer dans {{s}}s"
+    }
+  },
+  "footer": {
+    "desc": "La plateforme qui vous permet d'accéder aux abonnements premium à prix réduit, en toute sécurité.",
+    "feedback_cta": "Donner un avis",
+    "col_product": "Produit",
+    "col_account": "Compte",
+    "col_legal": "Légal",
+    "cgu": "Conditions d'utilisation",
+    "confidentialite": "Politique de confidentialité",
+    "cookies": "Cookies",
+    "rights": "Tous droits réservés.",
+    "feedback_title": "Votre avis nous aide à améliorer Bonemia",
+    "feedback_suggestion": "Suggestion",
+    "feedback_bug": "Signaler un bug",
+    "feedback_other": "Autre",
+    "feedback_email_label": "Votre e-mail (optionnel)",
+    "feedback_email_placeholder": "vous@exemple.com",
+    "feedback_message_label": "Votre message",
+    "feedback_placeholder_suggestion": "J'aimerais voir...",
+    "feedback_placeholder_bug": "Décrivez le bug rencontré...",
+    "feedback_placeholder_other": "Votre message...",
+    "feedback_submit": "Envoyer",
+    "feedback_sent": "Merci ! Votre message a bien été envoyé."
   }
 }

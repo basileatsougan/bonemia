@@ -31,8 +31,10 @@ const Hero = () => {
 
           {/* Titre */}
           <h1 className="hero-title">
-            {t("hero.title_line1")}
-            <img src="/starblack.png" alt="" className="hero-title__star hero-title__star--color" aria-hidden="true" />
+            <span className="hero-title__line1">
+              {t("hero.title_line1")}
+              <img src="/starblack.png" alt="" className="hero-title__star hero-title__star--color" aria-hidden="true" />
+            </span>
             <br />
             <span className="hero-title__accent">
               <img src="/starcolor.png" alt="" className="hero-title__star hero-title__star--inline" aria-hidden="true" />

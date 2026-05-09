@@ -1,0 +1,332 @@
+/* ============================================
+   BONEMIA — Register
+   Register.css
+   ============================================ */
+
+.rg-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fafafa;
+  padding: var(--spacing-6);
+}
+
+/* ---- Card ---- */
+.rg-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-4);
+  width: 100%;
+  max-width: 420px;
+  background: var(--color-white);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-10) var(--spacing-8);
+}
+
+.rg-card--confirm {
+  text-align: center;
+}
+
+/* ---- Logo ---- */
+.rg-logo {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--spacing-2);
+}
+
+.rg-logo__img {
+  height: 32px;
+  object-fit: contain;
+}
+
+/* ---- Texts ---- */
+.rg-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.rg-subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  text-align: center;
+  line-height: 1.6;
+  margin-top: calc(-1 * var(--spacing-2));
+}
+
+/* ---- Google button ---- */
+.rg-btn-google {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-3);
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--color-border);
+  background: var(--color-white);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.rg-btn-google:hover {
+  border-color: var(--color-border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.rg-btn-google__icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+/* ---- Divider ---- */
+.rg-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  width: 100%;
+}
+
+.rg-divider__line {
+  flex: 1;
+  height: 1px;
+  background-color: var(--color-border-light);
+}
+
+.rg-divider__text {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+/* ---- Email button ---- */
+.rg-btn-email {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--color-border);
+  background: var(--color-white);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.rg-btn-email:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+/* ---- Submit button ---- */
+.rg-btn-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-full);
+  border: none;
+  background: var(--color-primary);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-white);
+  cursor: pointer;
+  transition: opacity var(--transition-fast);
+  text-decoration: none;
+}
+
+.rg-btn-submit:hover {
+  opacity: 0.88;
+}
+
+.rg-btn-submit--outline {
+  background: transparent;
+  border: 1.5px solid var(--color-primary);
+  color: var(--color-primary);
+}
+
+.rg-btn-submit--outline:hover {
+  background: var(--color-primary);
+  color: var(--color-white);
+  opacity: 1;
+}
+
+/* ---- Login link ---- */
+.rg-login-link {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.rg-login-link__a {
+  color: var(--color-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.rg-login-link__a:hover {
+  text-decoration: underline;
+}
+
+/* ---- Back button ---- */
+.rg-back {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  padding: 0;
+  transition: color var(--transition-fast);
+}
+
+.rg-back:hover {
+  color: var(--color-text);
+}
+
+/* ---- Field ---- */
+.rg-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  width: 100%;
+}
+
+.rg-field__label {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.rg-field__input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--color-border);
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  background: var(--color-white);
+  outline: none;
+  transition: border-color var(--transition-fast);
+  box-sizing: border-box;
+}
+
+.rg-field__input:focus {
+  border-color: var(--color-primary);
+}
+
+.rg-field__input--error {
+  border-color: #ef4444;
+}
+
+.rg-field__error {
+  font-size: var(--font-size-xs);
+  color: #ef4444;
+}
+
+/* ---- Confirm ---- */
+.rg-confirm__icon {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.rg-confirm__text {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+.rg-confirm__email {
+  color: var(--color-text);
+}
+
+.rg-confirm__hint {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  margin-top: calc(-1 * var(--spacing-2));
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 480px) {
+  .rg-card {
+    padding: var(--spacing-8) var(--spacing-5);
+    border: none;
+    background: transparent;
+  }
+}
+
+/* ---- Spinner ---- */
+.rg-spinner {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2.5px solid rgba(255, 255, 255, 0.4);
+  border-top-color: var(--color-white);
+  border-radius: 50%;
+  animation: rg-spin 0.7s linear infinite;
+}
+
+@keyframes rg-spin {
+  to { transform: rotate(360deg); }
+}
+
+.rg-btn-submit:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+}
+
+.rg-back:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+
+/* ---- Resend button ---- */
+.rg-btn-resend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--color-border);
+  background: var(--color-white);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.rg-btn-resend:hover:not(:disabled) {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.rg-btn-resend:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ---- Spinner variante primary ---- */
+.rg-spinner--primary {
+  border-color: rgba(255, 92, 26, 0.3);
+  border-top-color: var(--color-primary);
+}
