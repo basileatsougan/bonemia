@@ -1,0 +1,231 @@
+/* ============================================
+   BONEMIA — FeaturedSubscriptions
+   FeaturedSubscriptions.css
+   ============================================ */
+
+.fs-section {
+  width: 100%;
+  padding: var(--spacing-20) 0;
+  background-color: #FAFAFA;
+}
+
+.fs-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-6);
+}
+
+/* ---- Badge ---- */
+.fs-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 1.2rem;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--color-border);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  background: var(--color-white);
+}
+
+/* ---- Title ---- */
+.fs-title {
+  font-size: clamp(1.9rem, 4vw, 2.9rem);
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+  max-width: 600px;
+  text-align: center;
+}
+
+.fs-title__accent {
+  color: var(--color-primary);
+}
+
+/* ---- Grid ---- */
+.fs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-4);
+  width: 100%;
+  margin-top: var(--spacing-4);
+}
+
+/* ---- Card ---- */
+.fs-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+  padding: var(--spacing-6);
+  background: var(--color-white);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: border-color var(--transition-base);
+}
+
+.fs-card:hover {
+  border-color: var(--color-border);
+}
+
+/* ---- Logo zone ---- */
+.fs-card__logo {
+  width: 100%;
+  height: 120px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-bottom: var(--spacing-2);
+}
+
+.fs-card__logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---- Meta row ---- */
+.fs-card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.fs-card__category {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-primary);
+  text-transform: capitalize;
+  letter-spacing: 0.02em;
+}
+
+.fs-card__badge {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  background: var(--color-bg-light);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+}
+
+/* ---- Name & desc ---- */
+.fs-card__name {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.3;
+}
+
+.fs-card__desc {
+  font-size: var(--font-size-xs);
+  font-weight: 400;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ---- Price ---- */
+.fs-card__price {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-2);
+  margin-top: var(--spacing-1);
+}
+
+.fs-card__price-current {
+  font-size: var(--font-size-xl);
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
+.fs-card__price-original {
+  font-size: var(--font-size-xs);
+  font-weight: 400;
+  color: var(--color-text-muted);
+  text-decoration: line-through;
+}
+
+.fs-card__price-period {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+/* ---- CTA ---- */
+.fs-card__cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  width: 100%;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text);
+  margin-top: auto;
+  padding: var(--spacing-3);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-full);
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.fs-card:hover .fs-card__cta {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+/* ---- Bottom CTA ---- */
+.fs-cta-wrap {
+  margin-top: var(--spacing-6);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 900px) {
+  .fs-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 580px) {
+  .fs-section {
+    padding: var(--spacing-16) 0;
+  }
+
+  .fs-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-3);
+  }
+
+  .fs-title {
+    font-size: 1.75rem;
+  }
+}
+
+.fs-card__badge {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: #16a34a;
+  background: #f0fdf4;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+}
+
+.fs-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+  padding: var(--spacing-6);
+  background: var(--color-white);
+  border: 1px solid rgba(255, 92, 26, 0.15);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: border-color var(--transition-base);
+}
+
+.fs-card:hover {
+  border-color: rgba(255, 92, 26, 0.35);
+}

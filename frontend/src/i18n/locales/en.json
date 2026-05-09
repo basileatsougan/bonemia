@@ -1,0 +1,122 @@
+{
+  "navbar": {
+    "abonnements": "Subscriptions",
+    "comment_ca_marche": "How it works",
+    "aide_faq": "Help / FAQ",
+    "connexion": "Log in",
+    "creer_compte": "Create an account"
+  },
+  "hero": {
+    "badge": "+100 members already saving",
+    "title_line1": "Access premium",
+    "title_accent": "subscriptions",
+    "title_line2": "for less",
+    "subtitle": "Canva, Netflix, Spotify, ChatGPT, Claude code… We manage subscriptions so you can access them at a more affordable price, starting today.",
+    "cta": "Discover subscriptions",
+    "stats": {
+      "membres": "active members",
+      "economie": "maximum savings",
+      "abonnements": "subscriptions available",
+      "support": "support available"
+    }
+  },
+  "how": {
+    "badge": "How it works",
+    "title_start": "Access your",
+    "title_accent": "subscriptions",
+    "title_end": "in 3 steps.",
+    "step1": {
+      "title": "Choose your service",
+      "desc": "Browse our catalog of 30+ premium services. Netflix, Spotify, ChatGPT… everything is there."
+    },
+    "step2": {
+      "title": "Join a group",
+      "desc": "Find an existing group or create your own. All members are verified. Your safety is our obsession."
+    },
+    "step3": {
+      "title": "Enjoy and save",
+      "desc": "Access your service immediately and save up to 75% every month. It's that simple."
+    }
+  },
+  "fs": {
+    "badge": "Full catalog",
+    "title_line1": "Your",
+    "title_accent": "subscriptions",
+    "title_line2": "and digital",
+    "title_line3": "essential services.",
+    "card_cta": "Access",
+    "cta": "Discover more subscriptions",
+    "plans": {
+      "netflix_premium": {
+        "category": "Streaming",
+        "badge": "−75% savings",
+        "name": "Netflix Premium",
+        "desc": "Access the full Netflix catalog in Ultra HD on all your screens. Series, movies.",
+        "price": "3,750 CFA",
+        "original": "15,000 CFA",
+        "period": "/ month"
+      },
+      "spotify_famille": {
+        "category": "Music",
+        "badge": "−75% savings",
+        "name": "Spotify Family",
+        "desc": "Listen to 100 million tracks ad-free with offline downloads included.",
+        "price": "1,200 CFA",
+        "original": "5,000 CFA",
+        "period": "/ month"
+      },
+      "chatgpt_plus": {
+        "category": "Artificial Intelligence",
+        "badge": "−70% savings",
+        "name": "ChatGPT Plus",
+        "desc": "Access to GPT-4o, DALL·E, document analysis and web browsing. And much more.",
+        "price": "1,200 CFA",
+        "original": "4,000 CFA",
+        "period": "/ month"
+      }
+    }
+  },
+  "sp": {
+    "badge": "Full catalog",
+    "title_line1": "Your favorite",
+    "title_accent": "subscriptions,",
+    "title_line2": "at a reduced price",
+    "subtitle": "Enjoy your favorite subscriptions easily and save every month through secure sharing with trusted people.",
+    "card_cta": "Access",
+    "filters": {
+      "all": "All",
+      "streaming": "Streaming",
+      "musique": "Music",
+      "ia": "Artificial Intelligence"
+    },
+    "plans": {
+      "netflix_premium": {
+        "category": "Streaming",
+        "badge": "−75% savings",
+        "name": "Netflix Premium",
+        "desc": "Access the full Netflix catalog in Ultra HD on all your screens. Series, movies.",
+        "price": "3,750 CFA",
+        "original": "15,000 CFA",
+        "period": "/ month"
+      },
+      "spotify_famille": {
+        "category": "Music",
+        "badge": "−75% savings",
+        "name": "Spotify Family",
+        "desc": "Listen to 100 million tracks ad-free with offline downloads included.",
+        "price": "1,200 CFA",
+        "original": "5,000 CFA",
+        "period": "/ month"
+      },
+      "chatgpt_plus": {
+        "category": "Artificial Intelligence",
+        "badge": "−70% savings",
+        "name": "ChatGPT Plus",
+        "desc": "Access to GPT-4o, DALL·E, document analysis and web browsing. And much more.",
+        "price": "1,200 CFA",
+        "original": "4,000 CFA",
+        "period": "/ month"
+      }
+    }
+  }
+}

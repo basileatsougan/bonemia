@@ -1,0 +1,173 @@
+/* ============================================
+   BONEMIA — HowItWorks
+   HowItWorks.css
+   ============================================ */
+
+.hiw-section {
+  width: 100%;
+  padding: var(--spacing-20) 0;
+  background-color: var(--color-white);
+}
+
+.hiw-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-6);
+}
+
+/* ---- Badge ---- */
+.hiw-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 1.2rem;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--color-border);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  background: var(--color-white);
+}
+
+/* ---- Title ---- */
+.hiw-title {
+  font-size: clamp(1.9rem, 4vw, 2.9rem);
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+  max-width: 600px;
+  text-align: center;
+}
+
+.hiw-title__accent {
+  color: var(--color-primary);
+}
+
+/* ---- Cards grid ---- */
+.hiw-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  width: 100%;
+  margin-top: var(--spacing-4);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+
+/* ---- Card ---- */
+.hiw-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-4);
+  padding: var(--spacing-8);
+  background: var(--color-white);
+  border-right: 1px solid var(--color-border-light);
+  transition: background var(--transition-base);
+}
+
+.hiw-card:last-child {
+  border-right: none;
+}
+
+.hiw-card:hover {
+  background: var(--color-bg-light);
+}
+
+/* ---- Card header (counter + arrow) ---- */
+.hiw-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.hiw-card__counter {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  letter-spacing: 0.05em;
+}
+
+.hiw-card__arrow {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-border);
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+}
+
+/* ---- Icon ---- */
+.hiw-card__icon {
+  width: 44px;
+  height: 44px;
+  background: var(--color-bg-light);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text);
+  flex-shrink: 0;
+}
+
+/* ---- Text ---- */
+.hiw-card__title {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.3;
+  text-align: left;
+}
+
+.hiw-card__desc {
+  font-size: var(--font-size-sm);
+  font-weight: 400;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  margin-top: calc(-1 * var(--spacing-2));
+  text-align: left;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+  .hiw-section {
+    padding: var(--spacing-16) 0;
+  }
+
+  .hiw-cards {
+    grid-template-columns: 1fr;
+    border-radius: var(--radius-lg);
+  }
+
+  .hiw-card {
+    border-right: none;
+    border-bottom: 1px solid var(--color-border-light);
+  }
+
+  .hiw-card:last-child {
+    border-bottom: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .hiw-container {
+    gap: var(--spacing-5);
+  }
+
+  .hiw-title {
+    font-size: 1.75rem;
+  }
+
+  .hiw-card {
+    padding: var(--spacing-6);
+  }
+}

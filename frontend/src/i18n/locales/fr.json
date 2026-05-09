@@ -1,0 +1,122 @@
+{
+  "navbar": {
+    "abonnements": "Abonnements",
+    "comment_ca_marche": "Comment ça marche",
+    "aide_faq": "Aide / FAQ",
+    "connexion": "Connexion",
+    "creer_compte": "Créer un compte"
+  },
+  "hero": {
+    "badge": "+100 membres économisent déjà",
+    "title_line1": "Accède aux abonnements",
+    "title_accent": "premium",
+    "title_line2": "pour moins cher",
+    "subtitle": "Canva, Netflix, Spotify, ChatGPT, Claud code… Nous gérons les abonnements pour vous permettre d'y accéder à un prix plus accessible, dès aujourd'hui.",
+    "cta": "Découvrir les abonnements",
+    "stats": {
+      "membres": "membres actifs",
+      "economie": "d'économie maximum",
+      "abonnements": "abonnements disponibles",
+      "support": "support disponible"
+    }
+  },
+  "how": {
+    "badge": "Comment ça marche",
+    "title_start": "Accédez à vos",
+    "title_accent": "abonnements",
+    "title_end": "en 3 étapes.",
+    "step1": {
+      "title": "Choisissez votre service",
+      "desc": "Parcourez notre catalogue de plus de 30 services premium. Netflix, Spotify, ChatGPT… tout y est."
+    },
+    "step2": {
+      "title": "Rejoignez un groupe",
+      "desc": "Trouvez un groupe existant ou créez le vôtre. Tous les membres sont vérifiés. Votre sécurité, notre obsession."
+    },
+    "step3": {
+      "title": "Profitez et économisez",
+      "desc": "Accédez immédiatement à votre service et économisez jusqu'à 75% chaque mois. C'est aussi simple que ça."
+    }
+  },
+  "fs": {
+    "badge": "Catalogue complet",
+    "title_line1": "Vos",
+    "title_accent": "abonnements",
+    "title_line2": "et services",
+    "title_line3": "numériques essentiels.",
+    "card_cta": "Accéder",
+    "cta": "Découvrir d'autres abonnements",
+    "plans": {
+      "netflix_premium": {
+        "category": "Streaming",
+        "badge": "−75% économie",
+        "name": "Netflix Premium",
+        "desc": "Accédez au catalogue complet Netflix en qualité Ultra HD sur tous vos écrans. Séries, films.",
+        "price": "3 750 CFA",
+        "original": "15 000 CFA",
+        "period": "/ mois"
+      },
+      "spotify_famille": {
+        "category": "Musique",
+        "badge": "−75% économie",
+        "name": "Spotify Famille",
+        "desc": "Écoutez 100 millions de titres en illimité, sans pub, avec des téléchargements offline.",
+        "price": "1 200 CFA",
+        "original": "5 000 CFA",
+        "period": "/ mois"
+      },
+      "chatgpt_plus": {
+        "category": "Intelligence Artificielle",
+        "badge": "−70% économie",
+        "name": "ChatGPT Plus",
+        "desc": "Accès à GPT-4o, DALL·E, analyse de documents et navigation web. Et bien plus encore.",
+        "price": "1 200 CFA",
+        "original": "4 000 CFA",
+        "period": "/ mois"
+      }
+    }
+  },
+  "sp": {
+    "badge": "Catalogue complet",
+    "title_line1": "Vos abonnements",
+    "title_accent": "préférés,",
+    "title_line2": "à prix réduit",
+    "subtitle": "Profitez de vos abonnements préférés simplement et économisez chaque mois grâce au partage sécurisé avec des personnes de confiance.",
+    "card_cta": "Accéder",
+    "filters": {
+      "all": "Tout",
+      "streaming": "Streaming",
+      "musique": "Musique",
+      "ia": "Intelligence Artificielle"
+    },
+    "plans": {
+      "netflix_premium": {
+        "category": "Streaming",
+        "badge": "−75% économie",
+        "name": "Netflix Premium",
+        "desc": "Accédez au catalogue complet Netflix en qualité Ultra HD sur tous vos écrans. Séries, films.",
+        "price": "3 750 CFA",
+        "original": "15 000 CFA",
+        "period": "/ mois"
+      },
+      "spotify_famille": {
+        "category": "Musique",
+        "badge": "−75% économie",
+        "name": "Spotify Famille",
+        "desc": "Écoutez 100 millions de titres en illimité, sans pub, avec des téléchargements offline.",
+        "price": "1 200 CFA",
+        "original": "5 000 CFA",
+        "period": "/ mois"
+      },
+      "chatgpt_plus": {
+        "category": "Intelligence Artificielle",
+        "badge": "−70% économie",
+        "name": "ChatGPT Plus",
+        "desc": "Accès à GPT-4o, DALL·E, analyse de documents et navigation web. Et bien plus encore.",
+        "price": "1 200 CFA",
+        "original": "4 000 CFA",
+        "period": "/ mois"
+      }
+    }
+  }
+}
