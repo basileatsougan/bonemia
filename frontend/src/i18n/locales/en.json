@@ -3,13 +3,19 @@
     "abonnements": "Subscriptions",
     "comment_ca_marche": "How it works",
     "aide_faq": "Help / FAQ",
-    "connexion": "Login",
-    "creer_compte": "Create account",
+    "connexion": "Log in",
+    "creer_compte": "Create an account",
     "logout": "Log out",
     "logout_title": "Log out?",
     "logout_text": "You will be redirected to the home page. You can log back in at any time.",
     "logout_cancel": "Cancel",
     "logout_confirm": "Log out"
+  },
+  "home": {
+    "meta": {
+      "title": "Bonemia | Premium subscriptions for less",
+      "description": "Access Canva, Netflix, Spotify, ChatGPT and other premium subscriptions at reduced prices with Bonemia."
+    }
   },
   "hero": {
     "badge": "+100 members already saving",
@@ -17,11 +23,11 @@
     "title_accent": "subscriptions",
     "title_line2": "for less",
     "subtitle": "Canva, Netflix, Spotify, ChatGPT, Claude code… We manage subscriptions so you can access them at a more affordable price, starting today.",
-    "cta": "Explore subscriptions",
+    "cta": "Discover subscriptions",
     "stats": {
       "membres": "active members",
       "economie": "maximum savings",
-      "abonnements": "available subscriptions",
+      "abonnements": "subscriptions available",
       "support": "support available"
     }
   },
@@ -32,23 +38,23 @@
     "title_end": "in 3 steps.",
     "step1": {
       "title": "Choose your service",
-      "desc": "Browse our catalog of over 30 premium services. Netflix, Spotify, ChatGPT… it's all there."
+      "desc": "Browse our catalog of 30+ premium services. Netflix, Spotify, ChatGPT… everything is there."
     },
     "step2": {
       "title": "Join a group",
-      "desc": "Find an existing group or create your own. All members are verified. Your security, our obsession."
+      "desc": "Find an existing group or create your own. All members are verified. Your safety is our obsession."
     },
     "step3": {
       "title": "Enjoy and save",
-      "desc": "Get immediate access to your service and save up to 75% every month. It's that simple."
+      "desc": "Access your service immediately and save up to 75% every month. It's that simple."
     }
   },
   "fs": {
     "badge": "Full catalog",
     "title_line1": "Your",
     "title_accent": "subscriptions",
-    "title_line2": "and services",
-    "title_line3": "essential digital tools.",
+    "title_line2": "and digital",
+    "title_line3": "essential services.",
     "card_cta": "Access",
     "cta": "Discover more subscriptions",
     "plans": {
@@ -56,7 +62,7 @@
         "category": "Streaming",
         "badge": "−75% savings",
         "name": "Netflix Premium",
-        "desc": "Access the full Netflix catalog in Ultra HD quality on all your screens. Series, movies.",
+        "desc": "Access the full Netflix catalog in Ultra HD on all your screens. Series, movies.",
         "price": "3,750 CFA",
         "original": "15,000 CFA",
         "period": "/ month"
@@ -65,7 +71,7 @@
         "category": "Music",
         "badge": "−75% savings",
         "name": "Spotify Family",
-        "desc": "Listen to 100 million tracks unlimited, ad-free, with offline downloads.",
+        "desc": "Listen to 100 million tracks ad-free with offline downloads included.",
         "price": "1,200 CFA",
         "original": "5,000 CFA",
         "period": "/ month"
@@ -82,10 +88,14 @@
     }
   },
   "sp": {
+    "meta": {
+      "title": "Bonemia | Premium subscriptions at reduced prices",
+      "description": "Access Netflix, Spotify, ChatGPT and other premium subscriptions at reduced prices through secure sharing."
+    },
     "badge": "Full catalog",
     "title_line1": "Your favorite",
     "title_accent": "subscriptions,",
-    "title_line2": "at reduced prices",
+    "title_line2": "at a reduced price",
     "subtitle": "Enjoy your favorite subscriptions easily and save every month through secure sharing with trusted people.",
     "card_cta": "Access",
     "filters": {
@@ -99,7 +109,7 @@
         "category": "Streaming",
         "badge": "−75% savings",
         "name": "Netflix Premium",
-        "desc": "Access the full Netflix catalog in Ultra HD quality on all your screens. Series, movies.",
+        "desc": "Access the full Netflix catalog in Ultra HD on all your screens. Series, movies.",
         "price": "3,750 CFA",
         "original": "15,000 CFA",
         "period": "/ month"
@@ -108,7 +118,7 @@
         "category": "Music",
         "badge": "−75% savings",
         "name": "Spotify Family",
-        "desc": "Listen to 100 million tracks unlimited, ad-free, with offline downloads.",
+        "desc": "Listen to 100 million tracks ad-free with offline downloads included.",
         "price": "1,200 CFA",
         "original": "5,000 CFA",
         "period": "/ month"
@@ -150,12 +160,12 @@
       "email_invalid": "Please enter a valid email address.",
       "email_cta": "Create my account",
       "confirm_title": "Check your inbox",
-      "confirm_text": "A confirmation link was sent to",
+      "confirm_text": "A confirmation link has been sent to",
       "confirm_text2": "Click the link to activate your account.",
       "confirm_hint": "Can't find the email? Check your spam folder.",
       "confirm_cta": "Go to login",
       "resend": "Resend email",
-      "resent": "Email sent!",
+      "resent": "Email resent!",
       "resend_countdown": "Resend in {{s}}s"
     },
     "login": {
@@ -164,20 +174,20 @@
       "email_label": "Email address",
       "email_placeholder": "you@example.com",
       "email_invalid": "Please enter a valid email address.",
-      "cta": "Send my code",
-      "no_account": "No account yet?",
+      "cta": "Get my code",
+      "no_account": "Don't have an account?",
       "register": "Sign up",
       "otp_title": "Enter your code",
-      "otp_subtitle": "A 6-digit code was sent to",
-      "otp_incomplete": "Please enter all 6 digits.",
+      "otp_subtitle": "A 6-digit code has been sent to",
+      "otp_incomplete": "Please enter all 6 digits of the code.",
       "otp_cta": "Log in",
       "resend": "Resend code",
-      "resent": "Code sent!",
+      "resent": "Code resent!",
       "resend_countdown": "Resend in {{s}}s"
     }
   },
   "footer": {
-    "desc": "The platform that gives you access to premium subscriptions at reduced prices, safely.",
+    "desc": "The platform that lets you access premium subscriptions at reduced prices, safely.",
     "feedback_cta": "Give feedback",
     "col_product": "Product",
     "col_account": "Account",
@@ -198,5 +208,121 @@
     "feedback_placeholder_other": "Your message...",
     "feedback_submit": "Send",
     "feedback_sent": "Thank you! Your message has been sent."
+  },
+  "aide": {
+    "meta_title": "Help & FAQ — Bonemia",
+    "meta_desc": "Find answers to your questions about Bonemia: subscriptions, payments, account and security.",
+    "hero_eyebrow": "Help center",
+    "hero_title": "How can we help you?",
+    "hero_sub": "Find answers to the most frequently asked questions about Bonemia.",
+    "sidebar_title": "Categories",
+    "cat_general": "General",
+    "cat_abonnements": "Subscriptions",
+    "cat_paiement": "Payment",
+    "cat_compte": "My account",
+    "q_what_is_bonemia": "What is Bonemia?",
+    "a_what_is_bonemia": "Bonemia is a platform that gives you access to 30+ premium subscriptions (Netflix, Spotify, ChatGPT…) by sharing costs with other verified members. Save up to 75% on your favourite digital subscriptions.",
+    "q_how_safe": "Is it safe?",
+    "a_how_safe": "Safety is our obsession. All members are verified, payments are encrypted, and we never share your personal information. Every group is managed under strict rules to guarantee a reliable experience.",
+    "q_who_can_join": "Who can join Bonemia?",
+    "a_who_can_join": "Any adult with a valid payment method can create an account. Bonemia is accessible from most French-speaking and English-speaking countries.",
+    "q_which_services": "Which services are available?",
+    "a_which_services": "We offer 30+ services: Netflix, Spotify, ChatGPT Plus, Claude, Disney+, YouTube Premium, Adobe Creative Cloud, and many more. The catalog grows regularly.",
+    "q_how_to_access": "How do I access a subscription?",
+    "a_how_to_access": "Choose a service from our catalog, join an existing group or create your own, complete your payment, and get immediate access to your service. Everything happens in 3 simple steps.",
+    "q_cancel_anytime": "Can I cancel at any time?",
+    "a_cancel_anytime": "Yes. You can leave a group or cancel your subscription at any time from your personal dashboard. Access remains active until the end of the period already paid for.",
+    "q_share_account": "How does account sharing work?",
+    "a_share_account": "Bonemia fully manages group coordination for you. You don't need to worry about the technical details — we handle everything to ensure your access is smooth and reliable.",
+    "q_payment_methods": "What payment methods are accepted?",
+    "a_payment_methods": "We accept bank cards (Visa, Mastercard), mobile payments (Orange Money, Wave, MTN) and other local methods depending on your country.",
+    "q_refund": "What is the refund policy?",
+    "a_refund": "If you experience a technical issue attributable to Bonemia within 48 hours of your payment, we will issue a full refund. Contact our support team with the details of your situation.",
+    "q_billing_cycle": "How does billing work?",
+    "a_billing_cycle": "Billing is monthly. You receive a summary by email before each renewal. No hidden fees — the displayed price is the final price.",
+    "q_change_password": "How do I change my password?",
+    "a_change_password": "Go to Settings → Security from your dashboard. You can also reset your password from the login page via \"Forgot password\".",
+    "q_delete_account": "How do I delete my account?",
+    "a_delete_account": "You can request account deletion from Settings → My account → Delete my account. This action is irreversible and all your data will be erased within 30 days.",
+    "q_multiple_devices": "Can I use Bonemia on multiple devices?",
+    "a_multiple_devices": "Your Bonemia account is accessible from any browser. The number of devices allowed for each service depends on the service itself (Netflix, Spotify…) and the group type.",
+    "contact_eyebrow": "Support",
+    "contact_title": "Didn't find your answer?",
+    "contact_sub": "Our team replies within 24 hours. Describe your issue and we'll do our best to help.",
+    "contact_name": "First name",
+    "contact_email": "Email",
+    "contact_message": "Message",
+    "contact_ph_name": "Your first name",
+    "contact_ph_email": "you@example.com",
+    "contact_ph_message": "Describe your question or issue…",
+    "contact_submit": "Send message",
+    "contact_sent": "Message sent! We'll reply within 24 hours."
+  },
+  "cta_propose": {
+    "label": "Can't find what you're looking for?",
+    "title": "Suggest a service that isn't in our catalog yet.",
+    "sub": "Our team reviews every suggestion and regularly adds new subscriptions based on demand.",
+    "cta": "Suggest a service"
+  },
+  "propose": {
+    "meta": {
+      "title": "Bonemia | Suggest a service",
+      "description": "Suggest a subscription or digital service you'd like to see on Bonemia."
+    },
+    "badge": "Can't find what you're looking for?",
+    "title": "Suggest a service",
+    "sub": "Fill out this form to submit a service you'd like to see in our catalog. Our team reviews every suggestion.",
+    "field_name": "Service name",
+    "ph_name": "e.g. Adobe Creative Cloud",
+    "field_url": "Website",
+    "ph_url": "https://...",
+    "field_category": "Category",
+    "field_price": "Estimated official price",
+    "ph_price": "e.g. 10,000 CFA / month",
+    "field_description": "Service description",
+    "ph_description": "Briefly describe this service and what it offers...",
+    "field_reason": "Why add it to Bonemia?",
+    "ph_reason": "Explain why this service would be useful to members...",
+    "cat_streaming": "Streaming",
+    "cat_musique": "Music",
+    "cat_ia": "Artificial Intelligence",
+    "cat_design": "Design",
+    "cat_productivite": "Productivity",
+    "cat_autre": "Other",
+    "required_note": "Fields marked with * are required.",
+    "submit": "Send my suggestion",
+    "error_required": "This field is required.",
+    "success_title": "Suggestion sent",
+    "success_sub": "Thank you for your suggestion. Our team will review it and get back to you if needed."
+  },
+  "reservation": {
+    "meta": {
+      "title": "Bonemia | Book a subscription",
+      "description": "Book your access to a premium subscription at a reduced price."
+    },
+    "badge": "Finalize your access",
+    "title": "Book this subscription",
+    "sub": "Fill in your information below. Our team will contact you within the next few minutes on WhatsApp to finalize your access.",
+    "field_email": "Email address",
+    "email_placeholder": "Log in to continue",
+    "email_hint": "Your email is automatically retrieved from your account.",
+    "field_fullname": "Full name",
+    "ph_fullname": "e.g. Kofi Mensah",
+    "field_whatsapp": "WhatsApp number",
+    "whatsapp_hint": "Please provide your active WhatsApp number — this is how we will contact you to finalize your access.",
+    "field_months": "Reservation duration",
+    "month_singular": "month",
+    "month_plural": "months",
+    "required_note": "Fields marked with * are required.",
+    "submit": "Send my request",
+    "error_required": "This field is required.",
+    "confirm_badge": "Request sent",
+    "confirm_title": "Your request has been received.",
+    "confirm_sub": "Our team will contact you within the next few minutes on your WhatsApp to finalize your access.",
+    "confirm_service": "Service",
+    "confirm_months": "Duration",
+    "confirm_months_label": "month(s)",
+    "confirm_contact": "WhatsApp",
+    "confirm_note": "Keep WhatsApp open. We will be in touch very soon."
   }
 }

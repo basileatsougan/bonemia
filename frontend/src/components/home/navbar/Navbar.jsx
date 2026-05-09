@@ -22,7 +22,7 @@ const mockUser = {
   firstName: "Kofi",
   lastName: "Atta",
 };
-const IS_LOGGED_IN = true; // à remplacer par vrai état auth
+const IS_LOGGED_IN = false; 
 
 const Navbar = () => {
   const { t } = useTranslation();

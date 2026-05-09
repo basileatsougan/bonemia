@@ -8,6 +8,10 @@ import HomePage from "./pages/home/HomePage";
 import SubscriptionsPage from "./pages/subscriptions/SubscriptionsPage";
 import Register from "./components/auth/register/Register";
 import Login from "./components/auth/login/Login";
+import AidePage from "./pages/aide/AidePage";
+import ProposeServicePage from "./pages/proposeservice/ProposeServicePage";
+import ReservationPage from "./pages/reservation/ReservationPage";
+import ScrollToTop from "./components/scrolltotop/ScrollToTop";
 
 function LanguageWrapper({ children }) {
   const { lang } = useParams();
@@ -29,10 +33,14 @@ function App() {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Helmet>
 
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Navigate to="/fr" replace />} />
         <Route path="/:lang" element={<LanguageWrapper><HomePage /></LanguageWrapper>} />
         <Route path="/:lang/abonnements" element={<LanguageWrapper><SubscriptionsPage /></LanguageWrapper>} />
+        <Route path="/:lang/abonnements/:key" element={<LanguageWrapper><ReservationPage /></LanguageWrapper>} />
+        <Route path="/:lang/aide" element={<LanguageWrapper><AidePage /></LanguageWrapper>} />
+        <Route path="/:lang/proposer" element={<LanguageWrapper><ProposeServicePage /></LanguageWrapper>} />
         <Route path="/:lang/auth/register" element={<LanguageWrapper><Register /></LanguageWrapper>} />
         <Route path="/:lang/auth/login" element={<LanguageWrapper><Login /></LanguageWrapper>} />
         <Route path="*" element={<Navigate to="/fr" replace />} />

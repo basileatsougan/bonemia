@@ -1,0 +1,117 @@
+/* ============================================
+   BONEMIA — CTAPropose
+   CTAPropose.css
+   ============================================ */
+
+.cta-propose {
+  width: 100%;
+  padding: var(--spacing-20) 0;
+  background-color: var(--color-white);
+  border-top: 1px solid var(--color-border-light);
+}
+
+.cta-propose__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-8);
+  background-color: #fafafa;
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-10) var(--spacing-12);
+}
+
+.cta-propose__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+  max-width: 560px;
+  padding: 50px;
+}
+
+.cta-propose__label {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 1.2rem;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--color-border);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  background: var(--color-white);
+  width: fit-content;
+}
+
+.cta-propose__title {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.cta-propose__sub {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+.cta-propose__action {
+  flex-shrink: 0;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+  .cta-propose__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: var(--spacing-8) var(--spacing-6);
+  }
+
+  .cta-propose__action {
+    width: 100%;
+  }
+
+  .cta-propose__action .btn-primary {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .cta-propose {
+    padding: var(--spacing-16) 0;
+  }
+
+  .cta-propose__title {
+    font-size: 1.3rem;
+  }
+}
+
+.cta-propose__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-8);
+  background-color: #fafafa;
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-10) var(--spacing-12);
+  overflow: visible; /* ← ajouter */
+}
+
+.cta-propose__label {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 1.2rem;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--color-border);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  background: var(--color-white);
+  width: fit-content;
+  position: relative; /* ← ajouter */
+  top: 0;
+}

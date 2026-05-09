@@ -1,0 +1,261 @@
+/* ============================================
+   BONEMIA — ProposeServiceForm
+   ProposeServiceForm.css
+   ============================================ */
+
+.psf-section {
+  width: 100%;
+  padding: calc(var(--navbar-height) + var(--spacing-16)) 0 var(--spacing-20);
+  background-color: #fafafa;
+  min-height: 100vh;
+}
+
+.psf-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+  max-width: 780px;
+}
+
+/* ---- Header ---- */
+.psf-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.psf-header__badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 1.2rem;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--color-border);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  background: var(--color-white);
+  width: fit-content;
+}
+
+.psf-header__title {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.psf-header__sub {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  max-width: 520px;
+}
+
+/* ---- Card ---- */
+.psf-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-10);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+}
+
+/* ---- Row ---- */
+.psf-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-4);
+}
+
+/* ---- Field ---- */
+.psf-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.psf-label {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  color: var(--color-text);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+}
+
+.psf-required {
+  color: var(--color-primary);
+}
+
+/* ---- Inputs ---- */
+.psf-input,
+.psf-textarea {
+  padding: 0.7rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--color-border);
+  background: var(--color-white);
+  font-size: var(--font-size-sm);
+  font-family: var(--font-family);
+  color: var(--color-text);
+  outline: none;
+  transition: border-color var(--transition-fast);
+  width: 100%;
+}
+
+.psf-input::placeholder,
+.psf-textarea::placeholder {
+  color: var(--color-text-muted);
+}
+
+.psf-input:focus,
+.psf-textarea:focus {
+  border-color: var(--color-primary);
+}
+
+.psf-input--error {
+  border-color: #ef4444;
+}
+
+.psf-textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+/* ---- Categories ---- */
+.psf-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-2);
+}
+
+.psf-cat-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--color-border);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  font-family: var(--font-family);
+  color: var(--color-text-secondary);
+  background: var(--color-white);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.psf-cat-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.psf-cat-btn--active {
+  background: var(--color-primary-light);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+/* ---- Error ---- */
+.psf-error {
+  font-size: var(--font-size-xs);
+  color: #ef4444;
+  font-weight: 500;
+}
+
+/* ---- Footer ---- */
+.psf-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-4);
+  padding-top: var(--spacing-4);
+  border-top: 1px solid var(--color-border-light);
+}
+
+.psf-footer__note {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.psf-submit {
+  min-width: 180px;
+  min-height: 46px;
+}
+
+/* ---- Spinner ---- */
+.psf-spinner {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2.5px solid rgba(255, 255, 255, 0.4);
+  border-top-color: var(--color-white);
+  border-radius: 50%;
+  animation: psf-spin 0.7s linear infinite;
+}
+
+@keyframes psf-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ---- Success ---- */
+.psf-success {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-4);
+  background: var(--color-white);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-12) var(--spacing-10);
+  max-width: 520px;
+}
+
+.psf-success__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #f0fdf4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #16a34a;
+}
+
+.psf-success__title {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+}
+
+.psf-success__sub {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 640px) {
+  .psf-card {
+    padding: var(--spacing-6);
+  }
+
+  .psf-row {
+    grid-template-columns: 1fr;
+  }
+
+  .psf-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .psf-submit {
+    width: 100%;
+  }
+}

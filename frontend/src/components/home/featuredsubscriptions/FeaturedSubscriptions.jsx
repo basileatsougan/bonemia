@@ -21,9 +21,8 @@ const FeaturedSubscriptions = () => {
   const navigate = useNavigate();
   const { lang } = useParams();
 
-  const handleSeeAll = () => {
-    navigate(`/${lang || "fr"}/abonnements`);
-  };
+  const handleSeeAll = () => navigate(`/${lang || "fr"}/abonnements`);
+  const handleAccess = (key) => navigate(`/${lang || "fr"}/abonnements/${key}`);
 
   return (
     <section className="fs-section">
@@ -56,7 +55,15 @@ const FeaturedSubscriptions = () => {
                 <span className="fs-card__price-original">{t(`fs.plans.${plan.key}.original`)}</span>
                 <span className="fs-card__price-period">{t(`fs.plans.${plan.key}.period`)}</span>
               </div>
-              <div className="fs-card__cta">{t("fs.card_cta")} →</div>
+              <div
+                className="fs-card__cta"
+                onClick={() => handleAccess(plan.key)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => e.key === "Enter" && handleAccess(plan.key)}
+              >
+                {t("fs.card_cta")} →
+              </div>
             </div>
           ))}
         </div>

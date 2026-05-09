@@ -14,7 +14,7 @@ const plans = [
   { logo: netflixLogo, alt: "Netflix", key: "netflix_premium", category: "streaming" },
   { logo: spotifyLogo, alt: "Spotify", key: "spotify_famille", category: "musique" },
   { logo: chatgptLogo, alt: "ChatGPT", key: "chatgpt_plus",    category: "ia" },
-  { logo: chatgptLogo, alt: "ChatGPT", key: "chatgpt_plusd",    category: "ia" },
+  { logo: chatgptLogo, alt: "ChatGPT", key: "chatgpt_plusd",   category: "ia" },
 ];
 
 const FILTERS = ["all", "streaming", "musique", "ia"];
@@ -42,6 +42,7 @@ const SubscriptionsList = () => {
           {FILTERS.map((f) => (
             <button
               key={f}
+              type="button"
               className={`sl-filter-btn ${activeFilter === f ? "sl-filter-btn--active" : ""}`}
               onClick={() => setActiveFilter(f)}
             >
@@ -53,7 +54,7 @@ const SubscriptionsList = () => {
         {/* Grid */}
         <div className="sl-grid">
           {filtered.map((plan, i) => (
-            <div className="sl-card" key={i} onClick={() => handleAccess(plan.key)}>
+            <div className="sl-card" key={i}>
 
               <div className="sl-card__logo">
                 <img src={plan.logo} alt={plan.alt} />
@@ -73,7 +74,13 @@ const SubscriptionsList = () => {
                 <span className="sl-card__price-period">{t(`sp.plans.${plan.key}.period`)}</span>
               </div>
 
-              <div className="sl-card__cta">{t("sp.card_cta")} →</div>
+              <button
+                type="button"
+                className="sl-card__cta"
+                onClick={() => handleAccess(plan.key)}
+              >
+                {t("sp.card_cta")} →
+              </button>
 
             </div>
           ))}
