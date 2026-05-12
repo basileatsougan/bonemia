@@ -5,7 +5,7 @@ from .models import CustomUser
 
 
 class CustomUserAdmin(admin.ModelAdmin):
-    list_display = ('email', 'phone_number', 'is_verified')
+    list_display = ('email', 'name', 'phone_number', 'is_verified')
     # search_fields = ('email', 'phone_number')
     # list_filter = ('is_verified',)
 

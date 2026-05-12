@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
-
+import random
+import string
+from django.utils import timezone
 
 # Create your models here.
 
@@ -10,11 +12,17 @@ class CustomUserManager(BaseUserManager):
             raise ValueError('The Email field must be set')
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
-        user.set_password(password)
+        if password:
+            user.set_password(password)
+        else:
+            user.set_unusable_password()
         user.save(using=self._db)
         return user
 
     def create_superuser(self, email, password=None, **extra_fields):
+        if not password:
+            raise ValueError('Superuser must have a password.')
+
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
         extra_fields.setdefault('is_verified', True)
@@ -31,13 +39,16 @@ class CustomUserManager(BaseUserManager):
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(('email address'), unique=True)
-    phone_number = models.CharField(max_length=15, blank=True, null=True)
+    name = models.CharField(max_length=255, blank=True, default='')
+    phone_number = models.CharField(max_length=32, blank=True, null=True)
     is_verified = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)
     
     is_staff = models.BooleanField(default=False)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
+    verification_code = models.CharField(max_length=6, blank=True, null=True)
+    verification_code_created_at = models.DateTimeField(blank=True, null=True)
     
     class Meta:
         verbose_name_plural = 'Users'
@@ -45,5 +56,13 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     objects = CustomUserManager()
     
     
+    def generate_verification_code(self):
+        """Generate a 6-digit verification code"""
+        code = ''.join(random.choices(string.digits, k=6))
+        self.verification_code = code
+        self.verification_code_created_at = timezone.now()
+        self.save()
+        return code
+
     def __str__(self):
         return self.email
