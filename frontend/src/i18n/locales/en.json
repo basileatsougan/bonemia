@@ -166,7 +166,10 @@
       "confirm_cta": "Go to login",
       "resend": "Resend email",
       "resent": "Email resent!",
-      "resend_countdown": "Resend in {{s}}s"
+      "resend_countdown": "Resend in {{s}}s",
+      "email_exists": "This email is already registered. Please log in instead.",
+      "error_generic": "An error occurred. Please try again.",
+      "error_network": "Connection error. Make sure the backend server is running."
     },
     "login": {
       "title": "Welcome back!",
@@ -299,6 +302,16 @@
     "meta": {
       "title": "Bonemia | Book a subscription",
       "description": "Book your access to a premium subscription at a reduced price."
+    },
+    "activate": {
+      "title_loading": "Activating...",
+      "title_success": "Account activated!",
+      "title_error": "Activation error",
+      "success": "Your account has been successfully activated. Redirecting to login...",
+      "error": "Invalid or expired activation link.",
+      "network_error": "Connection error to the server.",
+      "invalid_token": "Missing activation token.",
+      "go_to_login": "Go to login"
     },
     "badge": "Finalize your access",
     "title": "Book this subscription",

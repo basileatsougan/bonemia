@@ -12,6 +12,7 @@ import AidePage from "./pages/aide/AidePage";
 import ProposeServicePage from "./pages/proposeservice/ProposeServicePage";
 import ReservationPage from "./pages/reservation/ReservationPage";
 import ScrollToTop from "./components/scrolltotop/ScrollToTop";
+import Activate from "./components/auth/activate/Activate";
 
 function LanguageWrapper({ children }) {
   const { lang } = useParams();
@@ -36,6 +37,7 @@ function App() {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Navigate to="/fr" replace />} />
+        <Route path="/auth/activate/:token" element={<Activate />} />
         <Route path="/:lang" element={<LanguageWrapper><HomePage /></LanguageWrapper>} />
         <Route path="/:lang/abonnements" element={<LanguageWrapper><SubscriptionsPage /></LanguageWrapper>} />
         <Route path="/:lang/abonnements/:key" element={<LanguageWrapper><ReservationPage /></LanguageWrapper>} />

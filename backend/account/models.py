@@ -2,9 +2,9 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 import random
 import string
+import secrets
 from django.utils import timezone
-
-# Create your models here.
+from datetime import timedelta
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
@@ -50,19 +50,32 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     verification_code = models.CharField(max_length=6, blank=True, null=True)
     verification_code_created_at = models.DateTimeField(blank=True, null=True)
     
+    activation_token = models.CharField(max_length=255, blank=True, null=True)
+    activation_token_expires_at = models.DateTimeField(blank=True, null=True)
+    
     class Meta:
         verbose_name_plural = 'Users'
     
     objects = CustomUserManager()
     
-    
     def generate_verification_code(self):
-        """Generate a 6-digit verification code"""
         code = ''.join(random.choices(string.digits, k=6))
         self.verification_code = code
         self.verification_code_created_at = timezone.now()
         self.save()
         return code
+    
+    def generate_activation_token(self):
+        token = secrets.token_urlsafe(32)
+        self.activation_token = token
+        self.activation_token_expires_at = timezone.now() + timedelta(minutes=30)
+        self.save()
+        return token
+    
+    def is_activation_token_valid(self, token):
+        return (self.activation_token == token and 
+                self.activation_token_expires_at and 
+                self.activation_token_expires_at > timezone.now())
 
     def __str__(self):
         return self.email

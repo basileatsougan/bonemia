@@ -166,7 +166,10 @@
       "confirm_cta": "Aller à la connexion",
       "resend": "Renvoyer l'e-mail",
       "resent": "E-mail renvoyé !",
-      "resend_countdown": "Renvoyer dans {{s}}s"
+      "resend_countdown": "Renvoyer dans {{s}}s",
+      "email_exists": "Cet email est déjà utilisé. Connectez-vous à la place.",
+      "error_generic": "Une erreur est survenue. Veuillez réessayer.",
+      "error_network": "Problème de connexion au serveur. Vérifiez que le backend est démarré."
     },
     "login": {
       "title": "Bon retour !",
@@ -299,6 +302,16 @@
     "meta": {
       "title": "Bonemia | Réserver un abonnement",
       "description": "Réservez votre accès à un abonnement premium à prix réduit."
+    },
+    "activate": {
+      "title_loading": "Activation en cours...",
+      "title_success": "Compte activé !",
+      "title_error": "Erreur d'activation",
+      "success": "Votre compte a été activé avec succès. Redirection vers la connexion...",
+      "error": "Lien d'activation invalide ou expiré.",
+      "network_error": "Erreur de connexion au serveur.",
+      "invalid_token": "Token d'activation manquant.",
+      "go_to_login": "Aller à la connexion"
     },
     "badge": "Finaliser votre accès",
     "title": "Réserver cet abonnement",

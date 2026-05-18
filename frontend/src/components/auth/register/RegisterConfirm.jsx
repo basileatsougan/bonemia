@@ -78,7 +78,7 @@ const RegisterConfirm = ({ email }) => {
           )}
         </button>
 
-        <a href={`/${lang || "fr"}/login`} className="rg-btn-submit rg-btn-submit--outline">
+        <a href={`/${lang || "fr"}/auth/login`} className="rg-btn-submit rg-btn-submit--outline">
           {t("auth.register.confirm_cta")}
         </a>
 
