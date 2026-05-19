@@ -13,6 +13,7 @@ import ProposeServicePage from "./pages/proposeservice/ProposeServicePage";
 import ReservationPage from "./pages/reservation/ReservationPage";
 import ScrollToTop from "./components/scrolltotop/ScrollToTop";
 import Activate from "./components/auth/activate/Activate";
+import NotFoundPage from "./pages/notfound/NotFoundPage"; 
 import ProtectedRoute from "./components/auth/protectedroute/ProtectedRoute";
 
 function LanguageWrapper({ children }) {
@@ -64,7 +65,8 @@ function App() {
         />
         <Route path="/:lang/auth/register" element={<LanguageWrapper><Register /></LanguageWrapper>} />
         <Route path="/:lang/auth/login" element={<LanguageWrapper><Login /></LanguageWrapper>} />
-        <Route path="*" element={<Navigate to="/fr" replace />} />
+        <Route path="/:lang/404" element={<NotFoundPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>
   );

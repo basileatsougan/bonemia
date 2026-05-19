@@ -354,5 +354,11 @@
     "hint_promo_code": "Entrez votre code promo pour bénéficier d'une réduction",
     "confirm_view_all": "Voir tous les abonnements",
     "confirm_back_home": "Retour à l'accueil"
+  },
+  "notfound": {
+    "title": "Page non trouvée",
+    "subtitle": "Désolé, la page que vous recherchez n'existe pas ou a été déplacée.",
+    "btn_home": "Retour à l'accueil",
+    "btn_subscriptions": "Voir les abonnements"
   }
 }

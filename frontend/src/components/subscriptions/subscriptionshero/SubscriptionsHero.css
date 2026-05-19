@@ -31,6 +31,11 @@
   background: var(--color-white);
 }
 
+/* Badge commenté */
+/* .sp-hero__badge {
+  display: none;
+} */
+
 .sp-hero__title {
   font-size: clamp(1.9rem, 4vw, 2.9rem);
   font-weight: 500;
@@ -44,8 +49,8 @@
 }
 
 .sp-hero__subtitle {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-muted);
+  font-size: 1rem;
+  color: #1e293b;
   line-height: 1.7;
   max-width: 400px;
 }
@@ -69,10 +74,8 @@
   .sp-hero__visual {
     width: 100%;
     max-width: 360px;
-     align-self: flex-start;
-    
+    align-self: flex-start;
   }
-
 }
 
 @media (max-width: 580px) {

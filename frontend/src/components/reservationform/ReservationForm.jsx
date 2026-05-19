@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams, useNavigate } from "react-router-dom";
 import PhoneInput from "react-phone-number-input";
-import { API_BASE_URL } from "../../config/api";
-import { useAuth } from "../../contexts/AuthContext";
 import "react-phone-number-input/style.css";
 import "./ReservationForm.css";
 import ReservationConfirm from "../reservationconfirm/ReservationConfirm";
+import { useAuth } from "../../contexts/AuthContext";
+import { API_BASE_URL } from "../../config/api";
 
 const MONTHS = [1, 2, 3, 6, 12];
 
@@ -70,14 +70,10 @@ const ReservationForm = () => {
     );
   }
 
+  // Redirection vers 404 si l'abonnement n'existe pas
   if (!subscription) {
-    return (
-      <section className="rf-section">
-        <div className="rf-container container">
-          <div className="rf-error">Service non trouvé</div>
-        </div>
-      </section>
-    );
+    navigate(`/${i18n.language || "fr"}/404`, { replace: true });
+    return null;
   }
 
   const userEmail = user?.email || "";
@@ -102,11 +98,12 @@ const ReservationForm = () => {
     setSending(true);
 
     try {
+      const token = localStorage.getItem('access_token');
       const response = await fetch(`${API_BASE_URL}/api/inquiries/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({
           name: form.fullName,
@@ -120,7 +117,6 @@ const ReservationForm = () => {
         throw new Error("Erreur lors de l'envoi");
       }
 
-      // Attendre 3 secondes avant de rediriger
       await new Promise(resolve => setTimeout(resolve, 3000));
       
     } catch (err) {

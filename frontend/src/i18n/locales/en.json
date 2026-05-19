@@ -354,5 +354,11 @@
     "hint_promo_code": "Enter your promo code to get a discount",
     "confirm_view_all": "View all subscriptions",
     "confirm_back_home": "Back to home"
+  },
+  "notfound": {
+    "title": "Page not found",
+    "subtitle": "Sorry, the page you are looking for does not exist or has been moved.",
+    "btn_home": "Back to home",
+    "btn_subscriptions": "View subscriptions"
   }
 }
