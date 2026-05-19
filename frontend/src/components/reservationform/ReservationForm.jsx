@@ -1,53 +1,93 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams, useNavigate } from "react-router-dom";
 import PhoneInput from "react-phone-number-input";
+import { API_BASE_URL } from "../../config/api";
+import { useAuth } from "../../contexts/AuthContext";
 import "react-phone-number-input/style.css";
 import "./ReservationForm.css";
 import ReservationConfirm from "../reservationconfirm/ReservationConfirm";
 
 const MONTHS = [1, 2, 3, 6, 12];
 
-// Exemple de prix par durée — à adapter selon votre logique métier
-const PRICE_MAP = { 1: 9900, 2: 18900, 3: 27500, 6: 52000, 12: 99000 };
-const formatPrice = (p) =>
-  new Intl.NumberFormat("fr-TG", { style: "currency", currency: "XOF", maximumFractionDigits: 0 }).format(p);
-
 const ReservationForm = () => {
   const { t, i18n } = useTranslation();
-  const { key } = useParams();
+  const { slug } = useParams();
   const navigate = useNavigate();
+  const { user } = useAuth();
+  const [subscription, setSubscription] = useState(null);
+  const [loadingService, setLoadingService] = useState(true);
 
-  // Nom lisible du service depuis les données i18n (fallback: key brut)
-  const serviceName = (() => {
-    const data = i18n.getResourceBundle(i18n.language, "translation");
-    return data?.sp?.plans?.[key]?.name
-      ?? data?.fs?.plans?.[key]?.name
-      ?? key ?? "—";
-  })();
+  useEffect(() => {
+    const fetchSubscription = async () => {
+      try {
+        const response = await fetch(`${API_BASE_URL}/api/subscriptions/`);
+        if (!response.ok) throw new Error("Erreur chargement");
+        const data = await response.json();
+        const found = data.find(s => s.slug === slug);
+        setSubscription(found);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoadingService(false);
+      }
+    };
+    if (slug) {
+      fetchSubscription();
+    } else {
+      setLoadingService(false);
+    }
+  }, [slug]);
 
-  // Prix mensuel depuis les données i18n, ex: "1 200 CFA" → 1200
-  const monthlyPrice = (() => {
-    const data = i18n.getResourceBundle(i18n.language, "translation");
-    const raw = data?.sp?.plans?.[key]?.price ?? data?.fs?.plans?.[key]?.price ?? "";
-    const digits = raw.replace(/\s/g, "").match(/\d+/);
-    return digits ? parseInt(digits[0], 10) : 0;
-  })();
-
-  // TODO: récupérer depuis contexte auth
-  const userEmail = "";
-
-  const [form, setForm] = useState({ fullName: "", whatsapp: "", months: 1 });
-  const [errors, setErrors]   = useState({});
+  const [form, setForm] = useState({ 
+    fullName: user?.name || "", 
+    whatsapp: user?.phone_number || "", 
+    months: 1,
+    promoCode: "" 
+  });
+  const [errors, setErrors] = useState({});
   const [sending, setSending] = useState(false);
-  const [sent, setSent]       = useState(false);
+  const [sent, setSent] = useState(false);
+  const [showPromoCode, setShowPromoCode] = useState(false);
 
+  useEffect(() => {
+    if (user) {
+      setForm(prev => ({
+        ...prev,
+        fullName: user.name || prev.fullName,
+        whatsapp: user.phone_number || prev.whatsapp
+      }));
+    }
+  }, [user]);
+
+  if (loadingService) {
+    return (
+      <section className="rf-section">
+        <div className="rf-container container">
+          <div className="rf-loading">Chargement...</div>
+        </div>
+      </section>
+    );
+  }
+
+  if (!subscription) {
+    return (
+      <section className="rf-section">
+        <div className="rf-container container">
+          <div className="rf-error">Service non trouvé</div>
+        </div>
+      </section>
+    );
+  }
+
+  const userEmail = user?.email || "";
+  const monthlyPrice = parseInt(subscription.price_cfa, 10);
   const isFormValid = form.fullName.trim() !== "" && form.whatsapp !== "";
 
   const validate = () => {
     const e = {};
     if (!form.fullName.trim()) e.fullName = true;
-    if (!form.whatsapp)        e.whatsapp = true;
+    if (!form.whatsapp) e.whatsapp = true;
     return e;
   };
 
@@ -60,16 +100,41 @@ const ReservationForm = () => {
     const e = validate();
     if (Object.keys(e).length > 0) { setErrors(e); return; }
     setSending(true);
-    // TODO: appel API réel
-    await new Promise((r) => setTimeout(r, 1800));
-    setSending(false);
-    setSent(true);
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/inquiries/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+        },
+        body: JSON.stringify({
+          name: form.fullName,
+          phone_number: form.whatsapp,
+          subscription: subscription.id,
+          promo_code: form.promoCode || null,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Erreur lors de l'envoi");
+      }
+
+      // Attendre 3 secondes avant de rediriger
+      await new Promise(resolve => setTimeout(resolve, 3000));
+      
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setSending(false);
+      setSent(true);
+    }
   };
 
   if (sent) {
     return (
       <ReservationConfirm
-        serviceName={serviceName}
+        serviceName={subscription.name}
         months={form.months}
         whatsapp={form.whatsapp}
       />
@@ -81,11 +146,13 @@ const ReservationForm = () => {
     ? t("reservation.month_singular")
     : t("reservation.month_plural");
 
+  const formatPrice = (p) =>
+    new Intl.NumberFormat("fr-TG", { style: "currency", currency: "XOF", maximumFractionDigits: 0 }).format(p);
+
   return (
     <section className="rf-section">
       <div className="rf-container container">
 
-        {/* Header */}
         <div className="rf-header">
           <button
             type="button"
@@ -102,13 +169,10 @@ const ReservationForm = () => {
           <p className="rf-header__sub">{t("reservation.sub")}</p>
         </div>
 
-        {/* Two-column layout */}
         <div className="rf-layout">
 
-          {/* ── LEFT : formulaire ── */}
           <div className="rf-card">
 
-            {/* Email auto-rempli */}
             <div className="rf-field">
               <label className="rf-label">{t("reservation.field_email")}</label>
               <input
@@ -120,7 +184,6 @@ const ReservationForm = () => {
               <span className="rf-hint">{t("reservation.email_hint")}</span>
             </div>
 
-            {/* Nom complet */}
             <div className="rf-field">
               <label className="rf-label">
                 {t("reservation.field_fullname")}
@@ -139,7 +202,6 @@ const ReservationForm = () => {
               )}
             </div>
 
-            {/* WhatsApp */}
             <div className="rf-field">
               <label className="rf-label">
                 {t("reservation.field_whatsapp")}
@@ -161,7 +223,45 @@ const ReservationForm = () => {
               )}
             </div>
 
-            {/* Durée */}
+            <div className="rf-promo-toggle">
+              <button
+                type="button"
+                className="rf-promo-toggle__btn"
+                onClick={() => setShowPromoCode(!showPromoCode)}
+                disabled={sending}
+              >
+                <svg 
+                  width="16" 
+                  height="16" 
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  strokeWidth="2" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round"
+                  style={{ transform: showPromoCode ? 'rotate(90deg)' : 'rotate(0deg)', transition: 'transform 0.2s' }}
+                >
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+                {t("reservation.toggle_promo_code")}
+              </button>
+            </div>
+
+            {showPromoCode && (
+              <div className="rf-field rf-promo-field">
+                <label className="rf-label">{t("reservation.field_promo_code")}</label>
+                <input
+                  className="rf-input"
+                  type="text"
+                  placeholder={t("reservation.ph_promo_code")}
+                  value={form.promoCode}
+                  onChange={(e) => handleChange("promoCode", e.target.value)}
+                  disabled={sending}
+                />
+                <span className="rf-hint">{t("reservation.hint_promo_code")}</span>
+              </div>
+            )}
+
             <div className="rf-field">
               <label className="rf-label">{t("reservation.field_months")}</label>
               <div className="rf-months">
@@ -179,22 +279,27 @@ const ReservationForm = () => {
               </div>
             </div>
 
-            {/* Footer */}
             <div className="rf-footer">
               <p className="rf-footer__note">{t("reservation.required_note")}</p>
               <button
                 type="button"
-                className={`btn-primary rf-submit${!isFormValid && !sending ? " rf-submit--disabled" : ""}`}
+                className={`btn-primary rf-submit${!isFormValid || sending ? " rf-submit--disabled" : ""}`}
                 onClick={handleSubmit}
                 disabled={sending || !isFormValid}
               >
-                {sending ? <span className="rf-spinner" /> : t("reservation.submit")}
+                {sending ? (
+                  <>
+                    <span className="rf-spinner" />
+                    <span style={{ marginLeft: '8px' }}>Envoi en cours...</span>
+                  </>
+                ) : (
+                  t("reservation.submit")
+                )}
               </button>
             </div>
 
           </div>
 
-          {/* ── RIGHT : résumé de commande ── */}
           <aside className="rf-summary">
             <div className="rf-summary__inner">
 
@@ -202,27 +307,30 @@ const ReservationForm = () => {
                 <span className="rf-summary__label">{t("reservation.summary_title", "Résumé")}</span>
               </div>
 
-              {/* Service */}
               <div className="rf-summary__row">
                 <span className="rf-summary__key">{t("reservation.confirm_service", "Service")}</span>
-                <span className="rf-summary__val rf-summary__val--highlight">{serviceName}</span>
+                <span className="rf-summary__val rf-summary__val--highlight">{subscription.name}</span>
               </div>
 
-              {/* Durée */}
               <div className="rf-summary__row">
                 <span className="rf-summary__key">{t("reservation.confirm_months", "Durée")}</span>
                 <span className="rf-summary__val">{form.months} {monthLabel}</span>
               </div>
 
-              {/* Contact */}
               <div className="rf-summary__row">
                 <span className="rf-summary__key">{t("reservation.confirm_contact", "WhatsApp")}</span>
                 <span className="rf-summary__val">{form.whatsapp || "—"}</span>
               </div>
 
+              {form.promoCode && (
+                <div className="rf-summary__row">
+                  <span className="rf-summary__key">Code promo</span>
+                  <span className="rf-summary__val">{form.promoCode}</span>
+                </div>
+              )}
+
               <div className="rf-summary__divider" />
 
-              {/* Prix */}
               <div className="rf-summary__price-row">
                 <span className="rf-summary__price-label">{t("reservation.summary_total", "Total")}</span>
                 <span className="rf-summary__price-value">{formatPrice(price)}</span>
@@ -232,7 +340,6 @@ const ReservationForm = () => {
                 {t("reservation.summary_note", "Vous serez contacté via WhatsApp pour confirmer votre réservation.")}
               </p>
 
-              {/* Badges de confiance */}
               <div className="rf-summary__trust">
                 <div className="rf-trust-item">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>

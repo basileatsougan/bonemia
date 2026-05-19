@@ -208,3 +208,12 @@
 @keyframes fm-spin {
   to { transform: rotate(360deg); }
 }
+
+.fm-error {
+  background: #fee2e2;
+  color: #ef4444;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  margin-bottom: 16px;
+}

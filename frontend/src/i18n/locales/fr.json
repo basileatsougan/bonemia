@@ -87,6 +87,9 @@
       }
     }
   },
+  "common": {
+    "savings": "économie"
+  },
   "sp": {
     "meta": {
       "title": "Bonemia | Abonnements premium à prix réduit",
@@ -102,7 +105,11 @@
       "all": "Tout",
       "streaming": "Streaming",
       "musique": "Musique",
-      "ia": "Intelligence Artificielle"
+      "ia": "Intelligence Artificielle",
+      "design": "Design",
+      "productivite": "Productivité",
+      "jeux": "Jeux Vidéo",
+      "autre": "Autre"
     },
     "plans": {
       "netflix_premium": {
@@ -171,6 +178,11 @@
       "error_generic": "Une erreur est survenue. Veuillez réessayer.",
       "error_network": "Problème de connexion au serveur. Vérifiez que le backend est démarré."
     },
+    "already": {
+      "title": "Vous êtes déjà connecté",
+      "subtitle": "Vous êtes actuellement connecté à votre compte.",
+      "go_home": "Aller à l'accueil"
+    },
     "login": {
       "title": "Bon retour !",
       "subtitle": "Entrez votre e-mail pour recevoir un code de connexion.",
@@ -210,7 +222,8 @@
     "feedback_placeholder_bug": "Décrivez le bug rencontré...",
     "feedback_placeholder_other": "Votre message...",
     "feedback_submit": "Envoyer",
-    "feedback_sent": "Merci ! Votre message a bien été envoyé."
+    "feedback_sent": "Merci ! Votre message a bien été envoyé.",
+    "feedback_error_network": "Erreur de connexion, veuillez réessayer"
   },
   "aide": {
     "meta_title": "Aide & FAQ — Bonemia",
@@ -296,22 +309,14 @@
     "submit": "Envoyer ma suggestion",
     "error_required": "Ce champ est obligatoire.",
     "success_title": "Suggestion envoyée",
-    "success_sub": "Merci pour votre suggestion. Notre équipe l'examinera et reviendra vers vous si nécessaire."
+    "success_sub": "Merci pour votre suggestion. Notre équipe l'examinera et reviendra vers vous si nécessaire.",
+    "success_btn_subscriptions": "Voir les abonnements",
+    "success_btn_home": "Retour à l'accueil"
   },
   "reservation": {
     "meta": {
       "title": "Bonemia | Réserver un abonnement",
       "description": "Réservez votre accès à un abonnement premium à prix réduit."
-    },
-    "activate": {
-      "title_loading": "Activation en cours...",
-      "title_success": "Compte activé !",
-      "title_error": "Erreur d'activation",
-      "success": "Votre compte a été activé avec succès. Redirection vers la connexion...",
-      "error": "Lien d'activation invalide ou expiré.",
-      "network_error": "Erreur de connexion au serveur.",
-      "invalid_token": "Token d'activation manquant.",
-      "go_to_login": "Aller à la connexion"
     },
     "badge": "Finaliser votre accès",
     "title": "Réserver cet abonnement",
@@ -342,6 +347,12 @@
     "summary_note": "Vous serez contacté via WhatsApp pour confirmer votre réservation.",
     "trust_secure": "Paiement sécurisé",
     "trust_fast": "Activation rapide",
-    "trust_support": "Support WhatsApp"
+    "trust_support": "Support WhatsApp",
+    "toggle_promo_code": "Vous avez un code promo ?",
+    "field_promo_code": "Code promo",
+    "ph_promo_code": "ex: BONEMIA2024",
+    "hint_promo_code": "Entrez votre code promo pour bénéficier d'une réduction",
+    "confirm_view_all": "Voir tous les abonnements",
+    "confirm_back_home": "Retour à l'accueil"
   }
 }

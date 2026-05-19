@@ -1,31 +1,43 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate, useParams } from "react-router-dom";
+import { useAuth } from "../../../contexts/AuthContext";
+import { API_BASE_URL } from "../../../config/api";
 import "./ProposeServiceForm.css";
 
 const CATEGORIES = ["streaming", "musique", "ia", "design", "productivite", "autre"];
 
 const ProposeServiceForm = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const { lang } = useParams();
+  const { isAuthenticated, user } = useAuth();
 
   const [form, setForm] = useState({
-    name:        "",
-    url:         "",
-    category:    "",
-    price:       "",
+    name: "",
+    url: "",
+    category: "",
+    price: "",
     description: "",
-    reason:      "",
+    reason: "",
   });
 
-  const [sending, setSending]   = useState(false);
-  const [sent, setSent]         = useState(false);
-  const [errors, setErrors]     = useState({});
+  const [sending, setSending] = useState(false);
+  const [sent, setSent] = useState(false);
+  const [errors, setErrors] = useState({});
+
+  // Redirection si non connecté
+  if (!isAuthenticated) {
+    navigate(`/${lang || "fr"}/auth/login`);
+    return null;
+  }
 
   const validate = () => {
     const e = {};
-    if (!form.name.trim())        e.name        = true;
-    if (!form.category)           e.category    = true;
+    if (!form.name.trim()) e.name = true;
+    if (!form.category) e.category = true;
     if (!form.description.trim()) e.description = true;
-    if (!form.reason.trim())      e.reason      = true;
+    if (!form.reason.trim()) e.reason = true;
     return e;
   };
 
@@ -38,15 +50,41 @@ const ProposeServiceForm = () => {
     const e = validate();
     if (Object.keys(e).length > 0) { setErrors(e); return; }
     setSending(true);
-    // TODO: appel API réel
-    await new Promise((r) => setTimeout(r, 1800));
-    setSending(false);
-    setSent(true);
+
+    try {
+      const token = localStorage.getItem('access_token');
+      const response = await fetch(`${API_BASE_URL}/api/suggestions/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          name: form.name,
+          url: form.url || null,
+          category: form.category,
+          price: form.price || null,
+          description: form.description,
+          reason: form.reason,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Erreur lors de l'envoi");
+      }
+
+      setSending(false);
+      setSent(true);
+    } catch (err) {
+      console.error(err);
+      setSending(false);
+      setErrors({ form: "Erreur lors de l'envoi, veuillez réessayer" });
+    }
   };
 
   if (sent) {
     return (
-      <section className="psf-section">
+      <section className="psf-section psf-section--centered">
         <div className="psf-container container">
           <div className="psf-success">
             <div className="psf-success__icon">
@@ -56,6 +94,21 @@ const ProposeServiceForm = () => {
             </div>
             <h2 className="psf-success__title">{t("propose.success_title")}</h2>
             <p className="psf-success__sub">{t("propose.success_sub")}</p>
+            
+            <div className="psf-success__buttons">
+              <button 
+                className="psf-success__btn psf-success__btn--secondary"
+                onClick={() => navigate(`/${lang || "fr"}/abonnements`)}
+              >
+                {t("propose.success_btn_subscriptions")}
+              </button>
+              <button 
+                className="psf-success__btn psf-success__btn--primary"
+                onClick={() => navigate(`/${lang || "fr"}`)}
+              >
+                {t("propose.success_btn_home")}
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -66,17 +119,14 @@ const ProposeServiceForm = () => {
     <section className="psf-section">
       <div className="psf-container container">
 
-        {/* Header */}
         <div className="psf-header">
           <div className="psf-header__badge">{t("propose.badge")}</div>
           <h1 className="psf-header__title">{t("propose.title")}</h1>
           <p className="psf-header__sub">{t("propose.sub")}</p>
         </div>
 
-        {/* Form card */}
         <div className="psf-card">
 
-          {/* Ligne 1 : nom + url */}
           <div className="psf-row">
             <div className="psf-field">
               <label className="psf-label">
@@ -106,7 +156,6 @@ const ProposeServiceForm = () => {
             </div>
           </div>
 
-          {/* Ligne 2 : catégorie + prix estimé */}
           <div className="psf-row">
             <div className="psf-field">
               <label className="psf-label">
@@ -141,7 +190,6 @@ const ProposeServiceForm = () => {
             </div>
           </div>
 
-          {/* Description */}
           <div className="psf-field">
             <label className="psf-label">
               {t("propose.field_description")}
@@ -158,7 +206,6 @@ const ProposeServiceForm = () => {
             {errors.description && <span className="psf-error">{t("propose.error_required")}</span>}
           </div>
 
-          {/* Raison */}
           <div className="psf-field">
             <label className="psf-label">
               {t("propose.field_reason")}
@@ -175,7 +222,8 @@ const ProposeServiceForm = () => {
             {errors.reason && <span className="psf-error">{t("propose.error_required")}</span>}
           </div>
 
-          {/* Submit */}
+          {errors.form && <div className="psf-error-form">{errors.form}</div>}
+
           <div className="psf-footer">
             <p className="psf-footer__note">{t("propose.required_note")}</p>
             <button

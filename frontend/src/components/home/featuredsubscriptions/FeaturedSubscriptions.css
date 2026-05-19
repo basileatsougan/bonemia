@@ -229,3 +229,23 @@
 .fs-card:hover {
   border-color: rgba(255, 92, 26, 0.35);
 }
+
+.fs-card__logo-placeholder {
+  width: 80px;
+  height: 80px;
+  background-color: #fff4f0;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 700;
+  color: #ff5c1a;
+}
+
+.fs-loading {
+  text-align: center;
+  padding: 60px;
+  font-size: 1rem;
+  color: #64748b;
+}

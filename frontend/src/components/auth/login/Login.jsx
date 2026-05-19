@@ -1,17 +1,25 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useParams } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
 import { API_BASE_URL } from "../../../config/api";
+import { useAuth } from "../../../contexts/AuthContext";
 import LoginOTP from "./LoginOTP";
 import "./Login.css";
+import AlreadyLoggedIn from "../alreadyloggedIn/AlreadyLoggedIn";
 
 const Login = () => {
   const { t } = useTranslation();
   const { lang } = useParams();
+  const { isAuthenticated } = useAuth();
   const [step, setStep] = useState("email");
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+
+  // Rediriger si déjà connecté
+  if (isAuthenticated) {
+    return <AlreadyLoggedIn />;
+  }
 
   const validate = (val) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
 
@@ -24,7 +32,6 @@ const Login = () => {
     setLoading(true);
 
     try {
-      // Appel API pour envoyer le code OTP
       const response = await fetch(`${API_BASE_URL}/auth/users/resend_code/`, {
         method: 'POST',
         headers: {
@@ -40,7 +47,6 @@ const Login = () => {
         return;
       }
 
-      // Succès : passer à l'écran OTP
       setLoading(false);
       setStep("otp");
     } catch (err) {

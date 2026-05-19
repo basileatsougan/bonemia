@@ -1,9 +1,12 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate, useParams } from "react-router-dom";
 import "./ReservationConfirm.css";
 
 const ReservationConfirm = ({ serviceName, months, whatsapp }) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const { lang } = useParams();
 
   const monthLabel = months === 1
     ? t("reservation.confirm_months_label")
@@ -39,6 +42,21 @@ const ReservationConfirm = ({ serviceName, months, whatsapp }) => {
         </div>
 
         <p className="rc-confirm__note">{t("reservation.confirm_note")}</p>
+
+        <div className="rc-confirm__buttons">
+          <button 
+            className="rc-confirm__btn rc-confirm__btn--secondary"
+            onClick={() => navigate(`/${lang || "fr"}/abonnements`)}
+          >
+            {t("reservation.confirm_view_all")}
+          </button>
+          <button 
+            className="rc-confirm__btn rc-confirm__btn--primary"
+            onClick={() => navigate(`/${lang || "fr"}`)}
+          >
+            {t("reservation.confirm_back_home")}
+          </button>
+        </div>
 
       </div>
     </section>

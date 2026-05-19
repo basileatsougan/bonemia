@@ -422,3 +422,12 @@
     padding: var(--spacing-8) 0 var(--spacing-16);
   }
 }
+
+.faq-contact__error {
+  background: #fee2e2;
+  color: #ef4444;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  margin-bottom: 16px;
+}

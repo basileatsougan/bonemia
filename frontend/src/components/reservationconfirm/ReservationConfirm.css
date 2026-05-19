@@ -104,10 +104,14 @@
 
 /* ---- Note ---- */
 .rc-confirm__note {
-  font-size: var(--font-size-sm);
-  color: var(--color-primary);
-  font-weight: 600;
+  font-size: 0.875rem;
+  color: #16a34a;
+  font-weight: 500;
   line-height: 1.6;
+  background: #f0fdf4;
+  padding: 12px 16px;
+  border-radius: 12px;
+  margin-top: 8px;
 }
 
 /* ============================================
@@ -116,5 +120,53 @@
 @media (max-width: 640px) {
   .rc-confirm {
     padding: var(--spacing-8) var(--spacing-6);
+  }
+}
+
+/* Boutons de navigation */
+.rc-confirm__buttons {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  margin-top: 16px;
+}
+
+.rc-confirm__btn {
+  flex: 1;
+  padding: 12px 16px;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-family: var(--font-family);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: center;
+  border: none;
+}
+
+.rc-confirm__btn--primary {
+  background: #ff5c1a;
+  color: white;
+}
+
+.rc-confirm__btn--primary:hover {
+  opacity: 0.88;
+}
+
+.rc-confirm__btn--secondary {
+  background: transparent;
+  border: 1.5px solid var(--color-border);
+  color: var(--color-text);
+}
+
+.rc-confirm__btn--secondary:hover {
+  border-color: #ff5c1a;
+  color: #ff5c1a;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .rc-confirm__buttons {
+    flex-direction: column;
   }
 }

@@ -13,6 +13,7 @@ import ProposeServicePage from "./pages/proposeservice/ProposeServicePage";
 import ReservationPage from "./pages/reservation/ReservationPage";
 import ScrollToTop from "./components/scrolltotop/ScrollToTop";
 import Activate from "./components/auth/activate/Activate";
+import ProtectedRoute from "./components/auth/protectedroute/ProtectedRoute";
 
 function LanguageWrapper({ children }) {
   const { lang } = useParams();
@@ -40,9 +41,27 @@ function App() {
         <Route path="/auth/activate/:token" element={<Activate />} />
         <Route path="/:lang" element={<LanguageWrapper><HomePage /></LanguageWrapper>} />
         <Route path="/:lang/abonnements" element={<LanguageWrapper><SubscriptionsPage /></LanguageWrapper>} />
-        <Route path="/:lang/abonnements/:key" element={<LanguageWrapper><ReservationPage /></LanguageWrapper>} />
+        <Route 
+          path="/:lang/abonnements/:slug" 
+          element={
+            <LanguageWrapper>
+              <ProtectedRoute>
+                <ReservationPage />
+              </ProtectedRoute>
+            </LanguageWrapper>
+          } 
+        />
         <Route path="/:lang/aide" element={<LanguageWrapper><AidePage /></LanguageWrapper>} />
-        <Route path="/:lang/proposer" element={<LanguageWrapper><ProposeServicePage /></LanguageWrapper>} />
+        <Route 
+          path="/:lang/proposer" 
+          element={
+            <LanguageWrapper>
+              <ProtectedRoute>
+                <ProposeServicePage />
+              </ProtectedRoute>
+            </LanguageWrapper>
+          } 
+        />
         <Route path="/:lang/auth/register" element={<LanguageWrapper><Register /></LanguageWrapper>} />
         <Route path="/:lang/auth/login" element={<LanguageWrapper><Login /></LanguageWrapper>} />
         <Route path="*" element={<Navigate to="/fr" replace />} />

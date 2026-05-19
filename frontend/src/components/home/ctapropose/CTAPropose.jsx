@@ -2,15 +2,17 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
 import "./CTAPropose.css";
+import { useAuth } from "../../../contexts/AuthContext";
 
-const CTAPropose = ({ isLoggedIn = false }) => {
+const CTAPropose = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { lang } = useParams();
+  const { isAuthenticated } = useAuth();
 
   const handleClick = (e) => {
     e.preventDefault();
-    if (!isLoggedIn) {
+    if (!isAuthenticated) {
       navigate(`/${lang || "fr"}/auth/login`);
     } else {
       navigate(`/${lang || "fr"}/proposer`);

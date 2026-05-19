@@ -225,3 +225,14 @@
     flex-shrink: 0;
   }
 }
+
+.sl-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.sl-empty__message {
+  font-size: 1rem;
+  color: #64748b;
+}
