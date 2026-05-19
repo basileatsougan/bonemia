@@ -1,0 +1,104 @@
+/* ============================================
+   BONEMIA — NotFoundPage
+   ============================================ */
+
+.notfound-section {
+  min-height: calc(100vh - 200px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fafafa;
+  padding: var(--spacing-12) var(--spacing-6);
+}
+
+.notfound-container {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.notfound-code {
+  font-size: 8rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  line-height: 1;
+  margin-bottom: var(--spacing-4);
+  letter-spacing: -0.03em;
+}
+
+.notfound-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: var(--spacing-3);
+}
+
+.notfound-subtitle {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-8);
+  line-height: 1.6;
+}
+
+.notfound-buttons {
+  display: flex;
+  gap: var(--spacing-4);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.notfound-btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-family: var(--font-family);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  border: none;
+}
+
+.notfound-btn--primary {
+  background: var(--color-primary);
+  color: white;
+}
+
+.notfound-btn--primary:hover {
+  opacity: 0.88;
+}
+
+.notfound-btn--secondary {
+  background: transparent;
+  border: 1.5px solid var(--color-border);
+  color: var(--color-text);
+}
+
+.notfound-btn--secondary:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+/* Responsive */
+@media (max-width: 580px) {
+  .notfound-code {
+    font-size: 5rem;
+  }
+
+  .notfound-title {
+    font-size: 1.3rem;
+  }
+
+  .notfound-subtitle {
+    font-size: 0.875rem;
+  }
+
+  .notfound-buttons {
+    flex-direction: column;
+    gap: var(--spacing-3);
+  }
+
+  .notfound-btn {
+    width: 100%;
+  }
+}

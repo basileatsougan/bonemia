@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
+import { API_BASE_URL } from "../../../config/api";
+import { useAuth } from "../../../contexts/AuthContext";
 import "./Login.css";
 
 const COOLDOWN = 60;
@@ -10,11 +12,12 @@ const LoginOTP = ({ email, onBack }) => {
   const { t } = useTranslation();
   const { lang } = useParams();
   const navigate = useNavigate();
+  const { fetchUser } = useAuth();
 
   const [otp, setOtp] = useState(Array(OTP_LENGTH).fill(""));
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [countdown, setCountdown] = useState(COOLDOWN);
+  const [countdown, setCountdown] = useState(0);  // change COOLDOWN to 0
   const [resending, setResending] = useState(false);
   const [resent, setResent] = useState(false);
 
@@ -72,19 +75,69 @@ const LoginOTP = ({ email, onBack }) => {
     setError("");
     setLoading(true);
 
-    // TODO: appel API réel — vérification OTP
-    await new Promise((resolve) => setTimeout(resolve, 1800));
+    try {
+      const response = await fetch(`${API_BASE_URL}/auth/jwt/create/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+          email: email, 
+          code: code 
+        }),
+      });
 
-    setLoading(false);
-    navigate(`/${lang || "fr"}`);
+      const data = await response.json();
+
+      if (!response.ok) {
+        if (data.code) {
+          setError(data.code[0] || "Code invalide");
+        } else if (data.detail) {
+          setError("Email ou code incorrect");
+        } else {
+          setError(t("auth.register.error_generic"));
+        }
+        setLoading(false);
+        return;
+      }
+
+      // Stocker les tokens
+      localStorage.setItem('access_token', data.access);
+      localStorage.setItem('refresh_token', data.refresh);
+
+      // Récupérer l'utilisateur connecté
+      await fetchUser();
+
+      setLoading(false);
+      navigate(`/${lang || "fr"}`);
+      
+    } catch (err) {
+      console.error('OTP login error:', err);
+      setError(t("auth.register.error_network"));
+      setLoading(false);
+    }
   };
 
   const handleResend = async () => {
+    console.log("Renvoyer clique pour", email);  // log pour debug
     setResending(true);
     setResent(false);
 
-    // TODO: appel API réel — renvoi OTP
-    await new Promise((resolve) => setTimeout(resolve, 1800));
+    try {
+      const response = await fetch(`${API_BASE_URL}/auth/users/resend_code/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: email }),
+      });
+
+      if (!response.ok) {
+        console.error('Erreur renvoi code');
+      }
+    } catch (err) {
+      console.error('Resend error:', err);
+    }
 
     setResending(false);
     setResent(true);
@@ -119,7 +172,6 @@ const LoginOTP = ({ email, onBack }) => {
           <strong className="lg-otp__email">{email}</strong>
         </p>
 
-        {/* Champs OTP */}
         <div className="lg-otp__fields" onPaste={handlePaste}>
           {otp.map((digit, i) => (
             <input
@@ -147,7 +199,6 @@ const LoginOTP = ({ email, onBack }) => {
           {loading ? <span className="lg-spinner" /> : t("auth.login.otp_cta")}
         </button>
 
-        {/* Resend */}
         <button
           className="lg-btn-resend"
           onClick={handleResend}

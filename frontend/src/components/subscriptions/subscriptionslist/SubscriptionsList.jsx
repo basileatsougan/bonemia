@@ -1,43 +1,82 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
+import { API_BASE_URL } from "../../../config/api";
 import "./SubscriptionsList.css";
 
-import netflixLogo from "/netflixlogo.png";
-import spotifyLogo from "/spotifylogo.png";
-import chatgptLogo from "/gptlogo.png";
+const FILTERS = ["all", "streaming", "musique", "ia", "design", "productivite", "jeux", "autre"];
 
-const plans = [
-  { logo: netflixLogo, alt: "Netflix", key: "netflix_premium", category: "streaming" },
-  { logo: spotifyLogo, alt: "Spotify", key: "spotify_famille", category: "musique" },
-  { logo: chatgptLogo, alt: "ChatGPT", key: "chatgpt_plus",    category: "ia" },
-  { logo: netflixLogo, alt: "Netflix", key: "netflix_premium", category: "streaming" },
-  { logo: spotifyLogo, alt: "Spotify", key: "spotify_famille", category: "musique" },
-  { logo: chatgptLogo, alt: "ChatGPT", key: "chatgpt_plus",    category: "ia" },
-  { logo: chatgptLogo, alt: "ChatGPT", key: "chatgpt_plusd",   category: "ia" },
-];
-
-const FILTERS = ["all", "streaming", "musique", "ia"];
+const getCategoryName = (category) => {
+  switch(category) {
+    case "streaming": return "Streaming";
+    case "musique": return "Musique";
+    case "ia": return "Intelligence Artificielle";
+    case "design": return "Design";
+    case "productivite": return "Productivité";
+    case "jeux": return "Jeux Vidéo";
+    case "autre": return "Autre";
+    default: return "";
+  }
+};
 
 const SubscriptionsList = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { lang } = useParams();
+  const [subscriptions, setSubscriptions] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [activeFilter, setActiveFilter] = useState("all");
 
-  const filtered = activeFilter === "all"
-    ? plans
-    : plans.filter((p) => p.category === activeFilter);
+  useEffect(() => {
+    const fetchSubscriptions = async () => {
+      try {
+        const response = await fetch(`${API_BASE_URL}/api/subscriptions/`);
+        if (!response.ok) throw new Error("Erreur chargement");
+        const data = await response.json();
+        setSubscriptions(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchSubscriptions();
+  }, []);
 
-  const handleAccess = (key) => {
-    navigate(`/${lang || "fr"}/abonnements/${key}`);
+  const filtered = activeFilter === "all"
+    ? subscriptions
+    : subscriptions.filter((sub) => sub.category === activeFilter);
+
+  // Utiliser le slug au lieu de l'id
+  const handleAccess = (slug) => {
+    navigate(`/${lang || "fr"}/abonnements/${slug}`);
   };
+
+  if (loading) {
+    return (
+      <section className="sl-section">
+        <div className="sl-container container">
+          <div className="sl-loading">Chargement des abonnements...</div>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className="sl-section">
+        <div className="sl-container container">
+          <div className="sl-error">Erreur: {error}</div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="sl-section">
       <div className="sl-container container">
 
-        {/* Filters */}
         <div className="sl-filters">
           {FILTERS.map((f) => (
             <button
@@ -51,39 +90,54 @@ const SubscriptionsList = () => {
           ))}
         </div>
 
-        {/* Grid */}
         <div className="sl-grid">
-          {filtered.map((plan, i) => (
-            <div className="sl-card" key={i}>
-
-              <div className="sl-card__logo">
-                <img src={plan.logo} alt={plan.alt} />
-              </div>
-
-              <div className="sl-card__meta">
-                <span className="sl-card__category">{t(`sp.plans.${plan.key}.category`)}</span>
-                <span className="sl-card__badge">{t(`sp.plans.${plan.key}.badge`)}</span>
-              </div>
-
-              <h3 className="sl-card__name">{t(`sp.plans.${plan.key}.name`)}</h3>
-              <p className="sl-card__desc">{t(`sp.plans.${plan.key}.desc`)}</p>
-
-              <div className="sl-card__price">
-                <span className="sl-card__price-current">{t(`sp.plans.${plan.key}.price`)}</span>
-                <span className="sl-card__price-original">{t(`sp.plans.${plan.key}.original`)}</span>
-                <span className="sl-card__price-period">{t(`sp.plans.${plan.key}.period`)}</span>
-              </div>
-
-              <button
-                type="button"
-                className="sl-card__cta"
-                onClick={() => handleAccess(plan.key)}
-              >
-                {t("sp.card_cta")} →
-              </button>
-
+          {filtered.length === 0 ? (
+            <div className="sl-empty">
+              <p className="sl-empty__message">
+                Aucun abonnement disponible dans cette catégorie pour le moment.
+              </p>
             </div>
-          ))}
+          ) : (
+            filtered.map((sub) => (
+              <div className="sl-card" key={sub.id}>
+
+                <div className="sl-card__logo">
+                  {sub.image ? (
+                    <img src={sub.image} alt={sub.name} />
+                  ) : (
+                    <div className="sl-card__logo-placeholder">{sub.name.charAt(0)}</div>
+                  )}
+                </div>
+
+                <div className="sl-card__meta">
+                  <span className="sl-card__category">{getCategoryName(sub.category)}</span>
+                  {sub.discount_percentage > 0 && (
+                    <span className="sl-card__badge">−{sub.discount_percentage}% économie</span>
+                  )}
+                </div>
+
+                <h3 className="sl-card__name">{sub.name}</h3>
+                <p className="sl-card__desc">{sub.description || `Abonnez-vous à ${sub.name} et économisez chaque mois.`}</p>
+
+                <div className="sl-card__price">
+                  <span className="sl-card__price-current">{sub.price_cfa} CFA</span>
+                  {sub.original_price_cfa && (
+                    <span className="sl-card__price-original">{sub.original_price_cfa} CFA</span>
+                  )}
+                  <span className="sl-card__price-period">/ {sub.period === "monthly" ? "mois" : "an"}</span>
+                </div>
+
+                <button
+                  type="button"
+                  className="sl-card__cta"
+                  onClick={() => handleAccess(sub.slug)}
+                >
+                  {t("sp.card_cta")} →
+                </button>
+
+              </div>
+            ))
+          )}
         </div>
 
       </div>

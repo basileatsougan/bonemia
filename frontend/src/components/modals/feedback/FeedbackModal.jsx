@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { API_BASE_URL } from "../../../config/api";
 import "./FeedbackModal.css";
 
 const FEEDBACK_TYPES = ["suggestion", "bug", "other"];
@@ -12,6 +13,7 @@ const FeedbackModal = ({ isOpen, onClose }) => {
   const [feedbackEmail, setFeedbackEmail] = useState("");
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
+  const [error, setError] = useState("");
 
   const handleClose = () => {
     if (!sending) onClose();
@@ -20,17 +22,40 @@ const FeedbackModal = ({ isOpen, onClose }) => {
   const handleFeedbackSubmit = async () => {
     if (!feedbackText.trim()) return;
     setSending(true);
-    // TODO: appel API réel
-    await new Promise((r) => setTimeout(r, 1800));
-    setSending(false);
-    setSent(true);
-    setTimeout(() => {
-      setSent(false);
-      onClose();
-      setFeedbackText("");
-      setFeedbackEmail("");
-      setFeedbackType("suggestion");
-    }, 2500);
+    setError("");
+
+    try {
+      const token = localStorage.getItem('access_token');
+      const response = await fetch(`${API_BASE_URL}/api/feedbacks/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(token && { 'Authorization': `Bearer ${token}` })
+        },
+        body: JSON.stringify({
+          type: feedbackType,
+          email: feedbackEmail || null,
+          message: feedbackText,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Erreur lors de l'envoi");
+      }
+
+      setSent(true);
+      setTimeout(() => {
+        setSent(false);
+        onClose();
+        setFeedbackText("");
+        setFeedbackEmail("");
+        setFeedbackType("suggestion");
+      }, 2500);
+    } catch (err) {
+      setError(t("footer.feedback_error_network"));
+    } finally {
+      setSending(false);
+    }
   };
 
   if (!isOpen) return null;
@@ -58,7 +83,6 @@ const FeedbackModal = ({ isOpen, onClose }) => {
           </div>
         ) : (
           <>
-            {/* Type */}
             <div className="fm-types">
               {FEEDBACK_TYPES.map((type) => (
                 <button
@@ -71,7 +95,6 @@ const FeedbackModal = ({ isOpen, onClose }) => {
               ))}
             </div>
 
-            {/* Email */}
             <div className="fm-field">
               <label className="fm-label">{t("footer.feedback_email_label")}</label>
               <input
@@ -84,7 +107,6 @@ const FeedbackModal = ({ isOpen, onClose }) => {
               />
             </div>
 
-            {/* Message */}
             <div className="fm-field">
               <label className="fm-label">{t("footer.feedback_message_label")}</label>
               <textarea
@@ -96,6 +118,8 @@ const FeedbackModal = ({ isOpen, onClose }) => {
                 disabled={sending}
               />
             </div>
+
+            {error && <div className="fm-error">{error}</div>}
 
             <button
               className="fm-submit"

@@ -10,7 +10,7 @@ const SubscriptionsHero = () => {
     <section className="sp-hero-section">
       <div className="sp-hero-container container">
         <div className="sp-hero__content">
-          <div className="sp-hero__badge">{t("sp.badge")}</div>
+          {/* <div className="sp-hero__badge">{t("sp.badge")}</div> */}
           <h1 className="sp-hero__title">
             {t("sp.title_line1")}{" "}
             <span className="sp-hero__title-accent">{t("sp.title_accent")} </span>

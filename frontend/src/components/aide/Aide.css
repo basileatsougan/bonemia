@@ -1,6 +1,5 @@
 /* ============================================
    BONEMIA — Aide / FAQ
-   Aide.css
    ============================================ */
 
 .faq-page {
@@ -214,8 +213,9 @@
 
 .faq-item__answer {
   padding: var(--spacing-3) var(--spacing-5) var(--spacing-4);
-  font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #1e293b;
   line-height: 1.75;
   border-top: 1px solid var(--color-border-light);
 }
@@ -421,4 +421,13 @@
   .faq-body {
     padding: var(--spacing-8) 0 var(--spacing-16);
   }
+}
+
+.faq-contact__error {
+  background: #fee2e2;
+  color: #ef4444;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  margin-bottom: 16px;
 }

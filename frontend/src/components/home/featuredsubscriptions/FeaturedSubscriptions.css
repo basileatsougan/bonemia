@@ -1,6 +1,5 @@
 /* ============================================
    BONEMIA — FeaturedSubscriptions
-   FeaturedSubscriptions.css
    ============================================ */
 
 .fs-section {
@@ -60,14 +59,14 @@
   gap: var(--spacing-3);
   padding: var(--spacing-6);
   background: var(--color-white);
-  border: 1px solid var(--color-border-light);
+  border: 1px solid rgba(255, 92, 26, 0.15);
   border-radius: var(--radius-lg);
   cursor: pointer;
   transition: border-color var(--transition-base);
 }
 
 .fs-card:hover {
-  border-color: var(--color-border);
+  border-color: rgba(255, 92, 26, 0.35);
 }
 
 /* ---- Logo zone ---- */
@@ -77,12 +76,29 @@
   border-radius: var(--radius-md);
   overflow: hidden;
   margin-bottom: var(--spacing-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8fafc;
 }
 
 .fs-card__logo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: 80%;
+  height: auto;
+  object-fit: contain;
+}
+
+.fs-card__logo-placeholder {
+  width: 80px;
+  height: 80px;
+  background-color: #fff4f0;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 700;
+  color: #ff5c1a;
 }
 
 /* ---- Meta row ---- */
@@ -103,8 +119,8 @@
 .fs-card__badge {
   font-size: var(--font-size-xs);
   font-weight: 600;
-  color: var(--color-text-secondary);
-  background: var(--color-bg-light);
+  color: #16a34a;
+  background: #f0fdf4;
   padding: 0.2rem 0.6rem;
   border-radius: var(--radius-full);
 }
@@ -118,9 +134,9 @@
 }
 
 .fs-card__desc {
-  font-size: var(--font-size-xs);
+  font-size: 0.9rem;
   font-weight: 400;
-  color: var(--color-text-muted);
+  color: #1e293b;
   line-height: 1.6;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -169,6 +185,8 @@
   border: 1.5px solid var(--color-border);
   border-radius: var(--radius-full);
   transition: border-color var(--transition-fast), color var(--transition-fast);
+  cursor: pointer;
+  background: transparent;
 }
 
 .fs-card:hover .fs-card__cta {
@@ -179,6 +197,13 @@
 /* ---- Bottom CTA ---- */
 .fs-cta-wrap {
   margin-top: var(--spacing-6);
+}
+
+.fs-loading {
+  text-align: center;
+  padding: 60px;
+  font-size: 1rem;
+  color: #64748b;
 }
 
 /* ============================================
@@ -203,29 +228,4 @@
   .fs-title {
     font-size: 1.75rem;
   }
-}
-
-.fs-card__badge {
-  font-size: var(--font-size-xs);
-  font-weight: 600;
-  color: #16a34a;
-  background: #f0fdf4;
-  padding: 0.2rem 0.6rem;
-  border-radius: var(--radius-full);
-}
-
-.fs-card {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-3);
-  padding: var(--spacing-6);
-  background: var(--color-white);
-  border: 1px solid rgba(255, 92, 26, 0.15);
-  border-radius: var(--radius-lg);
-  cursor: pointer;
-  transition: border-color var(--transition-base);
-}
-
-.fs-card:hover {
-  border-color: rgba(255, 92, 26, 0.35);
 }

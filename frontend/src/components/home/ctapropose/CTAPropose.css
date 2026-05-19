@@ -1,6 +1,5 @@
 /* ============================================
    BONEMIA — CTAPropose
-   CTAPropose.css
    ============================================ */
 
 .cta-propose {
@@ -87,31 +86,4 @@
   .cta-propose__title {
     font-size: 1.3rem;
   }
-}
-
-.cta-propose__inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--spacing-8);
-  background-color: #fafafa;
-  border: 1px solid var(--color-border-light);
-  border-radius: var(--radius-xl);
-  padding: var(--spacing-10) var(--spacing-12);
-  overflow: visible; /* ← ajouter */
-}
-
-.cta-propose__label {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.4rem 1.2rem;
-  border-radius: var(--radius-full);
-  border: 1.5px solid var(--color-border);
-  font-size: var(--font-size-sm);
-  font-weight: 500;
-  color: var(--color-text-secondary);
-  background: var(--color-white);
-  width: fit-content;
-  position: relative; /* ← ajouter */
-  top: 0;
 }

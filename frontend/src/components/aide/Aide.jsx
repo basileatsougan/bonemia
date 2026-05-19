@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { API_BASE_URL } from "../../config/api";
 import "./Aide.css";
 
 const FAQ_CATEGORIES = [
@@ -57,18 +58,43 @@ const Aide = () => {
   const [message, setMessage] = useState("");
   const [sending, setSending] = useState(false);
   const [sent, setSent]       = useState(false);
+  const [error, setError]     = useState("");
 
   const handleContactSubmit = async () => {
     if (!message.trim() || !email.trim()) return;
     setSending(true);
-    // TODO: appel API réel
-    await new Promise((r) => setTimeout(r, 1800));
-    setSending(false);
-    setSent(true);
-    setTimeout(() => {
-      setSent(false);
-      setName(""); setEmail(""); setMessage("");
-    }, 3000);
+    setError("");
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/contact/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: name || null,
+          email: email,
+          message: message,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Erreur lors de l'envoi");
+      }
+
+      setSent(true);
+      setTimeout(() => {
+        setSent(false);
+        setName("");
+        setEmail("");
+        setMessage("");
+      }, 3000);
+    } catch (err) {
+      console.error(err);
+      setError("Erreur de connexion, veuillez réessayer");
+    } finally {
+      setSending(false);
+    }
   };
 
   const activeSection = FAQ_CATEGORIES.find((c) => c.id === activeCategory);
@@ -76,7 +102,6 @@ const Aide = () => {
   return (
     <main className="faq-page">
 
-      {/* Hero */}
       <section className="faq-hero">
         <div className="container">
           <p className="faq-hero__eyebrow">{t("aide.hero_eyebrow")}</p>
@@ -85,12 +110,10 @@ const Aide = () => {
         </div>
       </section>
 
-      {/* Body */}
       <section className="faq-body">
         <div className="container">
           <div className="faq-layout">
 
-            {/* Sidebar */}
             <nav className="faq-sidebar">
               <span className="faq-sidebar__title">{t("aide.sidebar_title")}</span>
               {FAQ_CATEGORIES.map((cat) => (
@@ -99,18 +122,15 @@ const Aide = () => {
                   className={`faq-cat-btn ${activeCategory === cat.id ? "faq-cat-btn--active" : ""}`}
                   onClick={() => { setActiveCategory(cat.id); setOpenItem(null); }}
                 >
-                  
                   {t(cat.labelKey)}
                 </button>
               ))}
             </nav>
 
-            {/* Accordéon */}
             <div className="faq-content">
               {activeSection && (
                 <div className="faq-section">
                   <div className="faq-section__head">
-                    
                     <h2 className="faq-section__title">{t(activeSection.labelKey)}</h2>
                   </div>
 
@@ -144,7 +164,6 @@ const Aide = () => {
                 </div>
               )}
 
-              {/* Formulaire de contact */}
               <div className="faq-contact">
                 <p className="faq-contact__eyebrow">{t("aide.contact_eyebrow")}</p>
                 <h3 className="faq-contact__title">{t("aide.contact_title")}</h3>
@@ -159,6 +178,7 @@ const Aide = () => {
                   </div>
                 ) : (
                   <div className="faq-contact__form">
+                    {error && <div className="faq-contact__error">{error}</div>}
                     <div className="faq-contact__row">
                       <div className="faq-contact__field">
                         <label className="faq-contact__label">{t("aide.contact_name")}</label>

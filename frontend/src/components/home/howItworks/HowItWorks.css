@@ -1,6 +1,5 @@
 /* ============================================
    BONEMIA — HowItWorks
-   HowItWorks.css
    ============================================ */
 
 .hiw-section {
@@ -127,9 +126,9 @@
 }
 
 .hiw-card__desc {
-  font-size: var(--font-size-sm);
+  font-size: 0.9rem;
   font-weight: 400;
-  color: var(--color-text-muted);
+  color: #1e293b;
   line-height: 1.7;
   margin-top: calc(-1 * var(--spacing-2));
   text-align: left;

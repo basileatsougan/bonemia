@@ -1,0 +1,100 @@
+.ali-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fafafa;
+  padding: 24px;
+}
+
+.ali-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  max-width: 420px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 24px;
+  padding: 48px 32px;
+}
+
+.ali-icon {
+  margin-bottom: 8px;
+}
+
+.ali-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  text-align: center;
+}
+
+.ali-subtitle {
+  font-size: 0.875rem;
+  color: #64748b;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.ali-user-info {
+  background-color: #f8fafc;
+  border-radius: 16px;
+  padding: 16px;
+  text-align: center;
+  width: 100%;
+  margin: 16px 0;
+}
+
+.ali-user-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 4px;
+}
+
+.ali-user-email {
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+.ali-actions {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.ali-btn-logout,
+.ali-btn-home {
+  flex: 1;
+  padding: 12px 24px;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  border: none;
+}
+
+.ali-btn-logout {
+  background: #ff5c1a;
+  color: white;
+}
+
+.ali-btn-logout:hover {
+  opacity: 0.88;
+}
+
+.ali-btn-home {
+  background: transparent;
+  border: 1.5px solid #e2e8f0;
+  color: #1e293b;
+}
+
+.ali-btn-home:hover {
+  border-color: #ff5c1a;
+  color: #ff5c1a;
+}
+

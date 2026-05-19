@@ -87,22 +87,29 @@
       }
     }
   },
+  "common": {
+    "savings": "saving"
+  },
   "sp": {
     "meta": {
       "title": "Bonemia | Premium subscriptions at reduced prices",
       "description": "Access Netflix, Spotify, ChatGPT and other premium subscriptions at reduced prices through secure sharing."
     },
-    "badge": "Full catalog",
+    "badge": "Complete catalog",
     "title_line1": "Your favorite",
     "title_accent": "subscriptions,",
-    "title_line2": "at a reduced price",
+    "title_line2": "at reduced prices",
     "subtitle": "Enjoy your favorite subscriptions easily and save every month through secure sharing with trusted people.",
     "card_cta": "Access",
     "filters": {
       "all": "All",
       "streaming": "Streaming",
       "musique": "Music",
-      "ia": "Artificial Intelligence"
+      "ia": "Artificial Intelligence",
+      "design": "Design",
+      "productivite": "Productivity",
+      "jeux": "Gaming",
+      "autre": "Other"
     },
     "plans": {
       "netflix_premium": {
@@ -166,7 +173,15 @@
       "confirm_cta": "Go to login",
       "resend": "Resend email",
       "resent": "Email resent!",
-      "resend_countdown": "Resend in {{s}}s"
+      "resend_countdown": "Resend in {{s}}s",
+      "email_exists": "This email is already registered. Please log in instead.",
+      "error_generic": "An error occurred. Please try again.",
+      "error_network": "Connection error. Make sure the backend server is running."
+    },
+    "already": {
+      "title": "You are already logged in",
+      "subtitle": "You are currently logged into your account.",
+      "go_home": "Go to home"
     },
     "login": {
       "title": "Welcome back!",
@@ -207,7 +222,8 @@
     "feedback_placeholder_bug": "Describe the bug you encountered...",
     "feedback_placeholder_other": "Your message...",
     "feedback_submit": "Send",
-    "feedback_sent": "Thank you! Your message has been sent."
+    "feedback_sent": "Thank you! Your message has been sent.",
+    "feedback_error_network": "Connection error, please try again"
   },
   "aide": {
     "meta_title": "Help & FAQ — Bonemia",
@@ -293,7 +309,9 @@
     "submit": "Send my suggestion",
     "error_required": "This field is required.",
     "success_title": "Suggestion sent",
-    "success_sub": "Thank you for your suggestion. Our team will review it and get back to you if needed."
+    "success_sub": "Thank you for your suggestion. Our team will review it and get back to you if needed.",
+    "success_btn_subscriptions": "View subscriptions",
+    "success_btn_home": "Back to home"
   },
   "reservation": {
     "meta": {
@@ -302,27 +320,45 @@
     },
     "badge": "Finalize your access",
     "title": "Book this subscription",
-    "sub": "Fill in your information below. Our team will contact you within the next few minutes on WhatsApp to finalize your access.",
+    "sub": "Fill in your details below. Our team will contact you within minutes on WhatsApp to finalize your access.",
     "field_email": "Email address",
     "email_placeholder": "Log in to continue",
     "email_hint": "Your email is automatically retrieved from your account.",
     "field_fullname": "Full name",
     "ph_fullname": "e.g. Kofi Mensah",
     "field_whatsapp": "WhatsApp number",
-    "whatsapp_hint": "Please provide your active WhatsApp number — this is how we will contact you to finalize your access.",
-    "field_months": "Reservation duration",
+    "whatsapp_hint": "Provide your active WhatsApp number — we will contact you on this number to finalize your access.",
+    "field_months": "Booking duration",
     "month_singular": "month",
     "month_plural": "months",
     "required_note": "Fields marked with * are required.",
-    "submit": "Send my request",
+    "submit": "Submit my request",
     "error_required": "This field is required.",
     "confirm_badge": "Request sent",
     "confirm_title": "Your request has been received.",
-    "confirm_sub": "Our team will contact you within the next few minutes on your WhatsApp to finalize your access.",
+    "confirm_sub": "Our team will contact you within minutes on your WhatsApp to finalize your access.",
     "confirm_service": "Service",
     "confirm_months": "Duration",
     "confirm_months_label": "month(s)",
     "confirm_contact": "WhatsApp",
-    "confirm_note": "Keep WhatsApp open. We will be in touch very soon."
+    "confirm_note": "Keep WhatsApp open. We will contact you very soon.",
+    "summary_title": "Summary",
+    "summary_total": "Total",
+    "summary_note": "You will be contacted via WhatsApp to confirm your booking.",
+    "trust_secure": "Secure payment",
+    "trust_fast": "Fast activation",
+    "trust_support": "WhatsApp support",
+    "toggle_promo_code": "Have a promo code?",
+    "field_promo_code": "Promo code",
+    "ph_promo_code": "e.g: BONEMIA2024",
+    "hint_promo_code": "Enter your promo code to get a discount",
+    "confirm_view_all": "View all subscriptions",
+    "confirm_back_home": "Back to home"
+  },
+  "notfound": {
+    "title": "Page not found",
+    "subtitle": "Sorry, the page you are looking for does not exist or has been moved.",
+    "btn_home": "Back to home",
+    "btn_subscriptions": "View subscriptions"
   }
 }

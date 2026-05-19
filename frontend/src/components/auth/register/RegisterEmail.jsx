@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { API_BASE_URL } from "../../../config/api";
 import "./Register.css";
 
 const RegisterEmail = ({ onSubmit, onBack }) => {
@@ -18,11 +19,35 @@ const RegisterEmail = ({ onSubmit, onBack }) => {
     setError("");
     setLoading(true);
 
-    // TODO: appel API réel ici
-    await new Promise((resolve) => setTimeout(resolve, 1800));
+    try {
+      const response = await fetch(`${API_BASE_URL}/auth/users/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: email }),
+      });
 
-    setLoading(false);
-    onSubmit(email);
+      const data = await response.json();
+
+      if (!response.ok) {
+        if (data.email && data.email[0].includes('already exists')) {
+          setError(t("auth.register.email_exists"));
+        } else {
+          setError(t("auth.register.error_generic"));
+        }
+        setLoading(false);
+        return;
+      }
+
+      setLoading(false);
+      onSubmit(email);
+      
+    } catch (err) {
+      console.error('Register error:', err);
+      setError(t("auth.register.error_network"));
+      setLoading(false);
+    }
   };
 
   return (

@@ -1,16 +1,25 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useParams } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
+import { API_BASE_URL } from "../../../config/api";
+import { useAuth } from "../../../contexts/AuthContext";
 import LoginOTP from "./LoginOTP";
 import "./Login.css";
+import AlreadyLoggedIn from "../alreadyloggedIn/AlreadyLoggedIn";
 
 const Login = () => {
   const { t } = useTranslation();
   const { lang } = useParams();
-  const [step, setStep] = useState("email"); // "email" | "otp"
+  const { isAuthenticated } = useAuth();
+  const [step, setStep] = useState("email");
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+
+  // Rediriger si déjà connecté
+  if (isAuthenticated) {
+    return <AlreadyLoggedIn />;
+  }
 
   const validate = (val) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
 
@@ -22,27 +31,38 @@ const Login = () => {
     setError("");
     setLoading(true);
 
-    // TODO: appel API réel — envoi OTP
-    await new Promise((resolve) => setTimeout(resolve, 1800));
+    try {
+      const response = await fetch(`${API_BASE_URL}/auth/users/resend_code/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: email }),
+      });
 
-    setLoading(false);
-    setStep("otp");
+      if (!response.ok) {
+        const data = await response.json();
+        setError(data.error || "Erreur lors de l'envoi du code");
+        setLoading(false);
+        return;
+      }
+
+      setLoading(false);
+      setStep("otp");
+    } catch (err) {
+      console.error('Login error:', err);
+      setError(t("auth.register.error_network"));
+      setLoading(false);
+    }
   };
 
   if (step === "otp") {
-    return (
-      <LoginOTP
-        email={email}
-        onBack={() => setStep("email")}
-      />
-    );
+    return <LoginOTP email={email} onBack={() => setStep("email")} />;
   }
 
   return (
     <div className="lg-page">
       <div className="lg-card">
-
-        {/* Logo */}
         <a href={`/${lang || "fr"}`} className="lg-logo">
           <img src="/bonemialogo.png" alt="Bonemia" className="lg-logo__img" />
         </a>
@@ -78,7 +98,6 @@ const Login = () => {
             {t("auth.login.register")}
           </a>
         </p>
-
       </div>
     </div>
   );
