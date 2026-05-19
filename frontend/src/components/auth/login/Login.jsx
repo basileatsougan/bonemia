@@ -73,11 +73,12 @@ const Login = () => {
         <div className="lg-field">
           <label className="lg-field__label">{t("auth.login.email_label")}</label>
           <input
+            name="email"
             className={`lg-field__input ${error ? "lg-field__input--error" : ""}`}
             type="email"
             placeholder={t("auth.login.email_placeholder")}
             value={email}
-            autoComplete="email"
+            autoComplete="on"
             disabled={loading}
             onChange={(e) => { setEmail(e.target.value); setError(""); }}
             onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
