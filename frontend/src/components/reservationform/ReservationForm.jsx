@@ -169,8 +169,8 @@ const ReservationForm = () => {
 
           <div className="rf-card">
 
-            <div className="rf-field">
-              <label className="rf-label">{t("reservation.field_email")}</label>
+            {/* <div className="rf-field">
+              <label className="rf-label">{t("reservation.email_label")}</label>
               <input
                 className="rf-input rf-input--disabled"
                 type="email"
@@ -178,7 +178,7 @@ const ReservationForm = () => {
                 disabled
               />
               <span className="rf-hint">{t("reservation.email_hint")}</span>
-            </div>
+            </div> */}
 
             <div className="rf-field">
               <label className="rf-label">

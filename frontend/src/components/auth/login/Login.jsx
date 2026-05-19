@@ -32,7 +32,7 @@ const Login = () => {
     setLoading(true);
 
     try {
-      const response = await fetch(`${API_BASE_URL}/auth/users/resend_code/`, {
+      const response = await fetch(`${API_BASE_URL}/api/auth/resend-verification-code/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -77,6 +77,7 @@ const Login = () => {
             type="email"
             placeholder={t("auth.login.email_placeholder")}
             value={email}
+            autoComplete="email"
             disabled={loading}
             onChange={(e) => { setEmail(e.target.value); setError(""); }}
             onKeyDown={(e) => e.key === "Enter" && handleSubmit()}

@@ -40,7 +40,12 @@ const Register = () => {
   }
 
   if (step === "confirm") {
-    return <RegisterConfirm email={email} />;
+    return (
+      <RegisterConfirm 
+        email={email}
+        onBack={() => setStep("email")}
+      />
+    );
   }
 
   return (
@@ -53,16 +58,16 @@ const Register = () => {
         <h1 className="rg-title">{t("auth.register.title")}</h1>
         <p className="rg-subtitle">{t("auth.register.subtitle")}</p>
 
-        <button className="rg-btn-google" onClick={handleGoogleRegister}>
+        {/* <button className="rg-btn-google" onClick={handleGoogleRegister}>
           <img src="/Google__G__logo.svg.png" alt="Google" className="rg-btn-google__icon" />
           {t("auth.register.google")}
-        </button>
+        </button> */}
 
-        <div className="rg-divider">
+        {/* <div className="rg-divider">
           <span className="rg-divider__line" />
           <span className="rg-divider__text">{t("auth.register.or")}</span>
           <span className="rg-divider__line" />
-        </div>
+        </div> */}
 
         <button className="rg-btn-email" onClick={() => setStep("email")}>
           {t("auth.register.email")}

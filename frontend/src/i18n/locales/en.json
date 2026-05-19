@@ -321,7 +321,6 @@
     "badge": "Finalize your access",
     "title": "Book this subscription",
     "sub": "Fill in your details below. Our team will contact you within minutes on WhatsApp to finalize your access.",
-    "field_email": "Email address",
     "email_placeholder": "Log in to continue",
     "email_hint": "Your email is automatically retrieved from your account.",
     "field_fullname": "Full name",

@@ -56,7 +56,7 @@
     "title_line2": "et services",
     "title_line3": "numériques essentiels.",
     "card_cta": "Accéder",
-    "cta": "Découvrir d'autres abonnements",
+    "cta": "Voir plus",
     "plans": {
       "netflix_premium": {
         "category": "Streaming",
@@ -321,7 +321,6 @@
     "badge": "Finaliser votre accès",
     "title": "Réserver cet abonnement",
     "sub": "Remplissez vos informations ci-dessous. Notre équipe vous contactera dans les prochaines minutes sur WhatsApp pour finaliser votre accès.",
-    "field_email": "Adresse e-mail",
     "email_placeholder": "Connectez-vous pour continuer",
     "email_hint": "Votre e-mail est récupéré automatiquement depuis votre compte.",
     "field_fullname": "Nom complet",

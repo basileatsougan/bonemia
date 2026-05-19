@@ -63,7 +63,7 @@ class AuthService {
   async requestNewCode(email) {
     // Note: Vérifiez si votre backend a cet endpoint
     // Sinon, on peut réutiliser register
-    return apiClient.post('/auth/users/resend_code/', { email })
+    return apiClient.post('/api/auth/resend-verification-code/', { email })
   }
 }
 

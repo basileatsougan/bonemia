@@ -4,17 +4,22 @@
    ============================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 /* ---- CSS Variables ---- */
 :root {
   /* Colors */
-  --color-primary: #FF6B2B;
+  /* --color-primary: #FF6B2B; */
+  --color-primary: #f96e33;
   --color-primary-hover: #e85d1f;
   --color-primary-light: #fff3ee;
   --color-dark: #111111;
-  --color-text: #1a1a1a;
+  /* --color-text: #1a1a1a; */
+  --color-text: #111111;
   --color-text-secondary: #555555;
-  --color-text-muted: #888888;
+  /* --color-text-muted: #888888; */
+  --color-text-muted: #555555;
   --color-white: #ffffff;
   --color-bg: #ffffff;
   --color-bg-light: #f8f8f6;
