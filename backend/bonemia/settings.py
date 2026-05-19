@@ -1,7 +1,9 @@
 from datetime import timedelta
 from pathlib import Path
+
 import os
 from dotenv import load_dotenv
+# from datetime import timedelta  # No longer needed with djoser
 
 load_dotenv()
 
@@ -19,8 +21,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'rest_framework.authtoken',
-    'rest_framework_simplejwt',
+    # 'rest_framework.authtoken',
+    # 'rest_framework_simplejwt',
     'djoser',
     'drf_spectacular',
     'corsheaders',
@@ -44,18 +46,16 @@ SIMPLE_JWT = {
     "AUTH_HEADER_TYPES": ("Bearer",),
 }
 
+
+
 DJOSER = {
     'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
     'USERNAME_RESET_CONFIRM_URL': '#/username/reset/confirm/{uid}/{token}',
     'ACTIVATION_URL': '#/activate/{uid}/{token}',
+    # OTP by email on sign-up (see PasswordlessUserCreateSerializer); not uid/token links.
     'SEND_ACTIVATION_EMAIL': False,
     'SERIALIZERS': {
         'user_create': 'account.serializers.PasswordlessUserCreateSerializer',
-        'current_user': 'account.serializers.CustomUserSerializer',
-    },
-    'PERMISSIONS': {
-        'user': ['rest_framework.permissions.IsAuthenticated'],
-        'user_list': ['rest_framework.permissions.AllowAny'],
     },
 }
 

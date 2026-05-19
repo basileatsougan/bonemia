@@ -50,9 +50,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     verification_code = models.CharField(max_length=6, blank=True, null=True)
     verification_code_created_at = models.DateTimeField(blank=True, null=True)
     
-    activation_token = models.CharField(max_length=255, blank=True, null=True)
-    activation_token_expires_at = models.DateTimeField(blank=True, null=True)
-    
+  
     class Meta:
         verbose_name_plural = 'Users'
     
@@ -65,17 +63,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         self.save()
         return code
     
-    def generate_activation_token(self):
-        token = secrets.token_urlsafe(32)
-        self.activation_token = token
-        self.activation_token_expires_at = timezone.now() + timedelta(minutes=30)
-        self.save()
-        return token
-    
-    def is_activation_token_valid(self, token):
-        return (self.activation_token == token and 
-                self.activation_token_expires_at and 
-                self.activation_token_expires_at > timezone.now())
-
+ 
     def __str__(self):
         return self.email

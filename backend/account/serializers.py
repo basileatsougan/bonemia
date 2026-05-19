@@ -16,6 +16,7 @@ User = get_user_model()
 
 
 def send_verification_code_email(user, *, subject="Your verification code"):
+    """Persist a new code on ``user`` and email it. Raises ValidationError if mail fails."""
     code = user.generate_verification_code()
     try:
         send_mail(
@@ -34,6 +35,11 @@ def send_verification_code_email(user, *, subject="Your verification code"):
 
 
 class PasswordlessUserCreateSerializer(DjoserUserCreateSerializer):
+    """
+    Sign-up with email (and optional password). Sends a one-time code by email;
+    the user signs in with ``POST /auth/jwt/create/`` using ``email`` + ``code``.
+    """
+
     password = serializers.CharField(
         style={"input_type": "password"},
         write_only=True,
@@ -62,22 +68,29 @@ class PasswordlessUserCreateSerializer(DjoserUserCreateSerializer):
 
     def create(self, validated_data):
         user = super().create(validated_data)
-        
-        token = user.generate_activation_token()
-        
-        frontend_url = getattr(settings, 'FRONTEND_URL', 'http://localhost:5173')
-        activation_link = f"{frontend_url}/auth/activate/{token}"
-        
-        print(f"Lien d'activation pour {user.email}: {activation_link}")
-        
-        user.is_active = False
-        user.is_verified = False
-        user.save()
-        
+        send_verification_code_email(user, subject="Your verification code")
         return user
 
 
-class CustomUserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ['id', 'email', 'name', 'phone_number']
+class ResendVerificationCodeSerializer(serializers.Serializer):
+    """
+    Request a new verification code to be sent to the user's email.
+    """
+
+    email = serializers.EmailField()
+
+    def validate_email(self, value):
+        """Verify that the email exists in the system."""
+        try:
+            User.objects.get(email=value)
+        except User.DoesNotExist:
+            raise serializers.ValidationError(
+                "No user found with this email address."
+            )
+        return value
+
+    def save(self):
+        """Send verification code to the user's email."""
+        email = self.validated_data["email"]
+        user = User.objects.get(email=email)
+        send_verification_code_email(user, subject="Your verification code")
