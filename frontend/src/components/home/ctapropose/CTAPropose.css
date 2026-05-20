@@ -43,7 +43,7 @@
 
 .cta-propose__title {
   font-size: clamp(1.4rem, 3vw, 2rem);
-  font-weight: 700;
+  font-weight: 500;
   color: var(--color-text);
   letter-spacing: -0.02em;
   line-height: 1.2;

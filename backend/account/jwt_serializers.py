@@ -1,3 +1,5 @@
+"""SimpleJWT token obtain: email + optional password, or email + verification code."""
+
 from datetime import timedelta
 
 from django.contrib.auth import authenticate, get_user_model
@@ -12,6 +14,11 @@ VERIFICATION_CODE_EXPIRY_MINUTES = 15
 
 
 class EmailCodeTokenObtainPairSerializer(TokenObtainPairSerializer):
+    """
+    - Staff / users with a password: ``email`` + ``password`` (omit ``code``).
+    - Passwordless: ``email`` + ``code`` (omit or leave ``password`` empty).
+    """
+
     code = serializers.CharField(
         required=False,
         allow_blank=True,

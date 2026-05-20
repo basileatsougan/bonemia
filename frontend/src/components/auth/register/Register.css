@@ -330,3 +330,39 @@
   border-color: rgba(255, 92, 26, 0.3);
   border-top-color: var(--color-primary);
 }
+
+/* ---- OTP fields ---- */
+.rg-otp__fields {
+  display: flex;
+  gap: var(--spacing-2);
+  justify-content: center;
+  width: 100%;
+}
+
+.rg-otp__input {
+  width: 44px;
+  height: 52px;
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-white);
+  outline: none;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+  caret-color: var(--color-primary);
+}
+
+.rg-otp__input:focus {
+  border-color: var(--color-primary);
+  background: #fff9f7;
+}
+
+.rg-otp__input--filled {
+  border-color: var(--color-primary);
+}
+
+.rg-otp__input--error {
+  border-color: #ef4444;
+}

@@ -124,7 +124,7 @@ const LoginOTP = ({ email, onBack }) => {
     setResent(false);
 
     try {
-      const response = await fetch(`${API_BASE_URL}/auth/users/resend_code/`, {
+      const response = await fetch(`${API_BASE_URL}/api/auth/resend-verification-code/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

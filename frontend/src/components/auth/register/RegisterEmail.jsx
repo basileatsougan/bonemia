@@ -68,6 +68,7 @@ const RegisterEmail = ({ onSubmit, onBack }) => {
             type="email"
             placeholder={t("auth.register.email_placeholder")}
             value={email}
+            autoComplete="on"
             disabled={loading}
             onChange={(e) => { setEmail(e.target.value); setError(""); }}
             onKeyDown={(e) => e.key === "Enter" && handleSubmit()}

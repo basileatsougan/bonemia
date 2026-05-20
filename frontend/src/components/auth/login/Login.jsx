@@ -32,7 +32,7 @@ const Login = () => {
     setLoading(true);
 
     try {
-      const response = await fetch(`${API_BASE_URL}/auth/users/resend_code/`, {
+      const response = await fetch(`${API_BASE_URL}/api/auth/resend-verification-code/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -73,10 +73,12 @@ const Login = () => {
         <div className="lg-field">
           <label className="lg-field__label">{t("auth.login.email_label")}</label>
           <input
+            name="email"
             className={`lg-field__input ${error ? "lg-field__input--error" : ""}`}
             type="email"
             placeholder={t("auth.login.email_placeholder")}
             value={email}
+            autoComplete="on"
             disabled={loading}
             onChange={(e) => { setEmail(e.target.value); setError(""); }}
             onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
