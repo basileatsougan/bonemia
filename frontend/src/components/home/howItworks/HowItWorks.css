@@ -15,7 +15,7 @@
   gap: var(--spacing-6);
 }
 
-/* ---- Badge ---- */
+/* ── Badge ── */
 .hiw-badge {
   display: inline-flex;
   align-items: center;
@@ -28,145 +28,508 @@
   background: var(--color-white);
 }
 
-/* ---- Title ---- */
+/* ── Titre — INCHANGÉ ── */
 .hiw-title {
-  font-size: clamp(1.9rem, 4vw, 2.9rem);
+  font-size: clamp(1.75rem, 4vw, 2.6rem);
   font-weight: 500;
   line-height: 1.2;
   color: var(--color-text);
   letter-spacing: -0.02em;
-  max-width: 600px;
   text-align: center;
+  max-width: 600px;
 }
 
 .hiw-title__accent {
   color: var(--color-primary);
 }
 
-/* ---- Cards grid ---- */
-.hiw-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0;
+.hiw-subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  text-align: center;
+  max-width: 420px;
+  line-height: 1.7;
+  margin-top: calc(-1 * var(--spacing-2));
+}
+
+/* ============================================
+   GRILLE
+   ============================================ */
+
+.hiw-grid {
+  display: flex;
+  align-items: flex-start;
   width: 100%;
-  margin-top: var(--spacing-4);
+  margin-top: var(--spacing-6);
+}
+
+/* ── Flèche ── */
+.hiw-arrow {
+  flex-shrink: 0;
+  width: 72px;
+  padding: 0 4px;
+  margin-top: 86px;
+}
+
+.hiw-arrow svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.hiw-arrow--flip {
+  transform: scaleY(-1);
+}
+
+/* ── Step ── */
+.hiw-step {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+  /* Hauteur égale pour toutes les cards via align-items stretch sur la grille */
+  align-self: stretch;
+}
+
+.hiw-step__num {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  color: var(--color-text-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding-left: 4px;
+}
+
+/* ── Card — même hauteur grâce à flex + height 100% ── */
+.hiw-step__card {
+  background: var(--color-white);
   border: 1px solid var(--color-border-light);
   border-radius: var(--radius-xl);
   overflow: hidden;
-}
-
-/* ---- Card ---- */
-.hiw-card {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: var(--spacing-4);
-  padding: var(--spacing-8);
-  background: var(--color-white);
-  border-right: 1px solid var(--color-border-light);
-  transition: background var(--transition-base);
+  height: 100%;
+  /* Hover : juste un border, pas de shadow ni transform */
+  transition: border-color var(--transition-base);
 }
 
-.hiw-card:last-child {
-  border-right: none;
+.hiw-step__card:hover {
+  border-color: var(--color-border);
 }
 
-.hiw-card:hover {
+/* Zone illustration */
+.hiw-step__illu {
   background: var(--color-bg-light);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: var(--spacing-5) var(--spacing-4) 0;
+  flex: 1;
+  /* prend tout l'espace disponible */
+  min-height: 210px;
 }
 
-/* ---- Card header (counter + arrow) ---- */
-.hiw-card__header {
+/* Zone texte */
+.hiw-step__body {
+  padding: var(--spacing-5) var(--spacing-5) var(--spacing-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.hiw-step__title {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.3;
+}
+
+.hiw-step__desc {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+/* ============================================
+   ILLUSTRATION — Mockup commun
+   ============================================ */
+
+.hiw-illu {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.hiw-mock {
+  width: 100%;
+  max-width: 230px;
+  background: var(--color-white);
+  border-radius: 10px 10px 0 0;
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.07), 0 0 0 1px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+}
+
+/* ── Barre titre mockup ── */
+.hiw-mock__bar {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 10px;
+  background: #f4f4f4;
+  border-bottom: 1px solid #eee;
+}
+
+.hiw-mock__bartitle {
+  font-size: 9px;
+  color: #888;
+  margin-left: 5px;
+  font-family: var(--font-family);
+}
+
+.hiw-mock__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* WhatsApp bar */
+.hiw-mock__bar--wa {
+  background: #075e54;
+  border-bottom-color: #064e46;
+  gap: 6px;
+}
+
+.hiw-mock__wa-name {
+  font-size: 9px;
+  font-weight: 700;
+  color: #ffffff;
+  /* blanc comme demandé */
+  font-family: var(--font-family);
+}
+
+.hiw-mock__wa-status {
+  font-size: 8px;
+  color: #25D366;
+  margin-left: auto;
+}
+
+/* ── Corps commun ── */
+.hiw-mock__body {
+  padding: var(--spacing-3) var(--spacing-3) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+/* ── Étape 1 : Email ── */
+.hiw-mock__body--email {
+  gap: var(--spacing-2);
+  padding-bottom: var(--spacing-3);
+}
+
+.hiw-mock__email-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
+  gap: 8px;
 }
 
-.hiw-card__counter {
-  font-size: var(--font-size-xs);
-  font-weight: 600;
+.hiw-mock__email-from {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.hiw-mock__email-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.hiw-mock__email-sender {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.hiw-mock__email-addr {
+  font-size: 8px;
   color: var(--color-text-muted);
+}
+
+.hiw-mock__email-time {
+  font-size: 8px;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.hiw-mock__email-subject {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.hiw-mock__email-body {
+  font-size: 9px;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.hiw-mock__email-btn {
+  padding: 7px 10px;
+  background: var(--color-primary);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  font-family: var(--font-family);
+  border-radius: var(--radius-full);
+  text-align: center;
+}
+
+.hiw-mock__email-note {
+  font-size: 8px;
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+/* ── Étape 2 : Formulaire réservation ── */
+.hiw-mock__body--form {
+  gap: 7px;
+  padding-bottom: var(--spacing-3);
+  align-items: stretch;
+}
+
+.hiw-mock__selected {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 8px;
+  background: var(--color-primary-light);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-sm);
+}
+
+.hiw-mock__selected-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.hiw-mock__selected-name {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--color-text);
+  flex: 1;
+}
+
+.hiw-mock__selected-badge {
+  font-size: 8px;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.hiw-mock__selected-price {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.hiw-mock__field {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.hiw-mock__flabel {
+  font-size: 8px;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
-.hiw-card__arrow {
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  border: 1.5px solid var(--color-border);
-  font-size: 0.85rem;
+.hiw-mock__finput {
+  padding: 5px 7px;
+  border-radius: 5px;
+  border: 1px solid var(--color-border);
+  font-size: 9.5px;
   color: var(--color-text-secondary);
-  flex-shrink: 0;
-}
-
-/* ---- Icon ---- */
-.hiw-card__icon {
-  width: 44px;
-  height: 44px;
   background: var(--color-bg-light);
-  border-radius: var(--radius-md);
+  font-family: var(--font-family);
+}
+
+.hiw-mock__months {
   display: flex;
+  gap: 4px;
+}
+
+.hiw-mock__month {
+  padding: 3px 7px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+  font-size: 8.5px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  font-family: var(--font-family);
+}
+
+.hiw-mock__month--active {
+  background: var(--color-primary-light);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.hiw-mock__cta {
+  padding: 7px 10px;
+  background: var(--color-primary);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  font-family: var(--font-family);
+  border-radius: var(--radius-full);
+  text-align: center;
+}
+
+/* ── Étape 3 : Chat WhatsApp ── */
+.hiw-mock__body--chat {
+  background: #ece5dd;
+  padding: var(--spacing-2);
+  gap: 6px;
+  align-items: flex-start;
+}
+
+.hiw-mock__bubble {
+  max-width: 90%;
+  padding: 6px 10px;
+  font-size: 9px;
+  line-height: 1.5;
+  border-radius: 12px;
+  font-family: var(--font-family);
+}
+
+.hiw-mock__bubble--in {
+  background: var(--color-white);
+  border-bottom-left-radius: 3px;
+  align-self: flex-start;
+  color: var(--color-text);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07);
+}
+
+.hiw-mock__bubble--out {
+  background: #d9fdd3;
+  border-bottom-right-radius: 3px;
+  align-self: flex-end;
+  color: var(--color-text);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07);
+}
+
+.hiw-mock__typing {
+  display: flex;
+  gap: 4px;
   align-items: center;
-  justify-content: center;
-  color: var(--color-text);
-  flex-shrink: 0;
+  padding: 7px 11px;
+  background: var(--color-white);
+  border-radius: 12px;
+  border-bottom-left-radius: 3px;
+  align-self: flex-start;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07);
 }
 
-/* ---- Text ---- */
-.hiw-card__title {
-  font-size: var(--font-size-base);
-  font-weight: 550;
-  color: var(--color-text);
-  line-height: 1.3;
-  text-align: left;
+.hiw-mock__typing span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #aaa;
+  display: block;
+  animation: typing-bounce 1.2s infinite;
 }
 
-.hiw-card__desc {
-  font-size: 0.9rem;
-  font-weight: 400;
-  color: #1e293b;
-  line-height: 1.7;
-  margin-top: calc(-1 * var(--spacing-2));
-  text-align: left;
+.hiw-mock__typing span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.hiw-mock__typing span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typing-bounce {
+
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+  }
+
+  30% {
+    transform: translateY(-4px);
+  }
 }
 
 /* ============================================
    RESPONSIVE
    ============================================ */
-@media (max-width: 768px) {
-  .hiw-section {
-    padding: var(--spacing-16) 0;
+
+@media (max-width: 900px) {
+  .hiw-arrow {
+    width: 48px;
+    margin-top: 78px;
   }
 
-  .hiw-cards {
-    grid-template-columns: 1fr;
-    border-radius: var(--radius-lg);
+  .hiw-mock {
+    max-width: 200px;
   }
 
-  .hiw-card {
-    border-right: none;
-    border-bottom: 1px solid var(--color-border-light);
-  }
-
-  .hiw-card:last-child {
-    border-bottom: none;
+  .hiw-badge {
+    margin-top: 25px;
   }
 }
 
-@media (max-width: 480px) {
-  .hiw-container {
+@media (max-width: 640px) {
+  .hiw-section {
+    padding: var(--spacing-14) 0;
+  }
+
+
+  .hiw-grid {
+    flex-direction: column;
     gap: var(--spacing-5);
+    margin-top: var(--spacing-4);
   }
 
-  .hiw-title {
-    font-size: 1.75rem;
+  .hiw-arrow {
+    display: none;
   }
 
-  .hiw-card {
-    padding: var(--spacing-6);
+  .hiw-step {
+    align-self: auto;
+  }
+
+  .hiw-step__card {
+    height: auto;
+  }
+
+  .hiw-step__illu {
+    min-height: 160px;
+  }
+
+  .hiw-mock {
+    max-width: 210px;
+  }
+
+  .hiw-badge {
+    margin-top: 25px;
   }
 }

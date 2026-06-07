@@ -39,16 +39,21 @@ const ReservationForm = () => {
     }
   }, [slug]);
 
-  const [form, setForm] = useState({ 
-    fullName: user?.name || "", 
-    whatsapp: user?.phone_number || "", 
+  const [form, setForm] = useState({
+    fullName: user?.name || "",
+    whatsapp: user?.phone_number || "",
     months: 1,
-    promoCode: "" 
+    promoCode: ""
   });
   const [errors, setErrors] = useState({});
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
+
+  // Promo code state
   const [showPromoCode, setShowPromoCode] = useState(false);
+  const [promoInput, setPromoInput] = useState("");
+  const [promoStatus, setPromoStatus] = useState(null); // null | 'valid' | 'invalid' | 'loading'
+  const [promoData, setPromoData] = useState(null); // { discount_percentage, code }
 
   useEffect(() => {
     if (user) {
@@ -70,7 +75,6 @@ const ReservationForm = () => {
     );
   }
 
-  // Redirection vers 404 si l'abonnement n'existe pas
   if (!subscription) {
     navigate(`/${i18n.language || "fr"}/404`, { replace: true });
     return null;
@@ -90,6 +94,49 @@ const ReservationForm = () => {
   const handleChange = (field, value) => {
     setForm((prev) => ({ ...prev, [field]: value }));
     setErrors((prev) => ({ ...prev, [field]: false }));
+  };
+
+  // Promo code handlers
+  const handleApplyPromo = async () => {
+    if (!promoInput.trim()) return;
+    setPromoStatus('loading');
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/promo-codes/validate/`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code: promoInput.trim() }),
+      });
+      const data = await response.json();
+      if (data.valid) {
+        setPromoStatus('valid');
+        setPromoData(data);
+        handleChange("promoCode", data.code);
+      } else {
+        setPromoStatus('invalid');
+        setPromoData(null);
+        handleChange("promoCode", "");
+      }
+    } catch {
+      setPromoStatus('invalid');
+      setPromoData(null);
+    }
+  };
+
+  const handlePromoInputChange = (e) => {
+    setPromoInput(e.target.value);
+    if (promoStatus) {
+      setPromoStatus(null);
+      setPromoData(null);
+      handleChange("promoCode", "");
+    }
+  };
+
+  const handleRemovePromo = () => {
+    setPromoInput("");
+    setPromoStatus(null);
+    setPromoData(null);
+    handleChange("promoCode", "");
   };
 
   const handleSubmit = async () => {
@@ -118,7 +165,7 @@ const ReservationForm = () => {
       }
 
       await new Promise(resolve => setTimeout(resolve, 3000));
-      
+
     } catch (err) {
       console.error(err);
     } finally {
@@ -138,6 +185,9 @@ const ReservationForm = () => {
   }
 
   const price = monthlyPrice * form.months;
+  const discountAmount = promoData ? Math.round(price * promoData.discount_percentage / 100) : 0;
+  const finalPrice = price - discountAmount;
+
   const monthLabel = form.months === 1
     ? t("reservation.month_singular")
     : t("reservation.month_plural");
@@ -167,18 +217,8 @@ const ReservationForm = () => {
 
         <div className="rf-layout">
 
+          {/* ---- Formulaire gauche ---- */}
           <div className="rf-card">
-
-            {/* <div className="rf-field">
-              <label className="rf-label">{t("reservation.email_label")}</label>
-              <input
-                className="rf-input rf-input--disabled"
-                type="email"
-                value={userEmail || t("reservation.email_placeholder")}
-                disabled
-              />
-              <span className="rf-hint">{t("reservation.email_hint")}</span>
-            </div> */}
 
             <div className="rf-field">
               <label className="rf-label">
@@ -219,45 +259,6 @@ const ReservationForm = () => {
               )}
             </div>
 
-            <div className="rf-promo-toggle">
-              <button
-                type="button"
-                className="rf-promo-toggle__btn"
-                onClick={() => setShowPromoCode(!showPromoCode)}
-                disabled={sending}
-              >
-                <svg 
-                  width="16" 
-                  height="16" 
-                  viewBox="0 0 24 24" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  strokeWidth="2" 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round"
-                  style={{ transform: showPromoCode ? 'rotate(90deg)' : 'rotate(0deg)', transition: 'transform 0.2s' }}
-                >
-                  <polyline points="9 18 15 12 9 6" />
-                </svg>
-                {t("reservation.toggle_promo_code")}
-              </button>
-            </div>
-
-            {showPromoCode && (
-              <div className="rf-field rf-promo-field">
-                <label className="rf-label">{t("reservation.field_promo_code")}</label>
-                <input
-                  className="rf-input"
-                  type="text"
-                  placeholder={t("reservation.ph_promo_code")}
-                  value={form.promoCode}
-                  onChange={(e) => handleChange("promoCode", e.target.value)}
-                  disabled={sending}
-                />
-                <span className="rf-hint">{t("reservation.hint_promo_code")}</span>
-              </div>
-            )}
-
             <div className="rf-field">
               <label className="rf-label">{t("reservation.field_months")}</label>
               <div className="rf-months">
@@ -275,7 +276,8 @@ const ReservationForm = () => {
               </div>
             </div>
 
-            <div className="rf-footer">
+            {/* Bouton submit visible uniquement desktop (dans la footer card) */}
+            <div className="rf-footer rf-footer--desktop">
               <p className="rf-footer__note">{t("reservation.required_note")}</p>
               <button
                 type="button"
@@ -296,6 +298,7 @@ const ReservationForm = () => {
 
           </div>
 
+          {/* ---- Résumé droite ---- */}
           <aside className="rf-summary">
             <div className="rf-summary__inner">
 
@@ -318,18 +321,121 @@ const ReservationForm = () => {
                 <span className="rf-summary__val">{form.whatsapp || "—"}</span>
               </div>
 
-              {form.promoCode && (
-                <div className="rf-summary__row">
-                  <span className="rf-summary__key">Code promo</span>
-                  <span className="rf-summary__val">{form.promoCode}</span>
+              {/* ---- Code promo ---- */}
+              <div className="rf-promo-toggle">
+                <button
+                  type="button"
+                  className="rf-promo-toggle__btn"
+                  onClick={() => setShowPromoCode(!showPromoCode)}
+                  disabled={sending}
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    style={{ transform: showPromoCode ? 'rotate(90deg)' : 'rotate(0deg)', transition: 'transform 0.2s' }}
+                  >
+                    <polyline points="9 18 15 12 9 6" />
+                  </svg>
+                  {t("reservation.toggle_promo_code")}
+                </button>
+              </div>
+
+              {showPromoCode && (
+                <div className="rf-field rf-promo-field">
+                  <label className="rf-label">{t("reservation.field_promo_code")}</label>
+                  <div className="rf-summary__promo-row">
+                    <input
+                      className={`rf-input${promoStatus === 'invalid' ? ' rf-input--error' : ''}`}
+                      type="text"
+                      placeholder={t("reservation.ph_promo_code")}
+                      value={promoInput}
+                      onChange={handlePromoInputChange}
+                      disabled={sending || promoStatus === 'valid'}
+                      onKeyDown={(e) => e.key === 'Enter' && handleApplyPromo()}
+                      autoFocus
+                    />
+                    {promoStatus === 'valid' ? (
+                      <button
+                        type="button"
+                        className="rf-summary__promo-btn rf-summary__promo-btn--remove"
+                        onClick={handleRemovePromo}
+                        disabled={sending}
+                      >
+                        ✕
+                      </button>
+                    ) : (
+                      <button
+                        type="button"
+                        className="rf-summary__promo-btn"
+                        onClick={handleApplyPromo}
+                        disabled={sending || promoStatus === 'loading' || !promoInput.trim()}
+                      >
+                        {promoStatus === 'loading'
+                          ? <span className="rf-spinner rf-spinner--dark" />
+                          : t("reservation.apply_promo", "Appliquer")}
+                      </button>
+                    )}
+                  </div>
+                  {promoStatus === 'invalid' && (
+                    <span className="rf-error">{t("reservation.promo_invalid", "Code invalide ou expiré")}</span>
+                  )}
+                  {promoStatus === 'valid' && promoData && (
+                    <span className="rf-summary__promo-success">
+                      -{promoData.discount_percentage}% appliqué ✓
+                    </span>
+                  )}
+                  <span className="rf-hint">{t("reservation.hint_promo_code")}</span>
                 </div>
               )}
 
               <div className="rf-summary__divider" />
 
+              {promoData && (
+                <>
+                  <div className="rf-summary__row">
+                    <span className="rf-summary__key">{t("reservation.subtotal", "Sous-total")}</span>
+                    <span className="rf-summary__val">{formatPrice(price)}</span>
+                  </div>
+                  <div className="rf-summary__row">
+                    <span className="rf-summary__key rf-summary__key--discount">
+                      {t("reservation.discount", "Réduction")} ({promoData.discount_percentage}%)
+                    </span>
+                    <span className="rf-summary__val rf-summary__val--discount">
+                      -{formatPrice(discountAmount)}
+                    </span>
+                  </div>
+                </>
+              )}
+
               <div className="rf-summary__price-row">
                 <span className="rf-summary__price-label">{t("reservation.summary_total", "Total")}</span>
-                <span className="rf-summary__price-value">{formatPrice(price)}</span>
+                <span className="rf-summary__price-value">{formatPrice(finalPrice)}</span>
+              </div>
+
+              {/* Bouton submit visible uniquement mobile (dans le résumé, après total) */}
+              <div className="rf-footer rf-footer--mobile">
+                <p className="rf-footer__note">{t("reservation.required_note")}</p>
+                <button
+                  type="button"
+                  className={`btn-primary rf-submit${!isFormValid || sending ? " rf-submit--disabled" : ""}`}
+                  onClick={handleSubmit}
+                  disabled={sending || !isFormValid}
+                >
+                  {sending ? (
+                    <>
+                      <span className="rf-spinner" />
+                      <span style={{ marginLeft: '8px' }}>Envoi en cours...</span>
+                    </>
+                  ) : (
+                    t("reservation.submit")
+                  )}
+                </button>
               </div>
 
               <p className="rf-summary__note">

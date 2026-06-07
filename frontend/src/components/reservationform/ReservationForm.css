@@ -25,7 +25,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-8);
-  max-width: 1100px; /* élargi pour accueillir 2 colonnes */
+  max-width: 1100px;
 }
 
 /* ---- Back button ---- */
@@ -154,6 +154,10 @@
   color: var(--color-text-secondary);
 }
 
+.rf-summary__key--discount {
+  color: #16a34a;
+}
+
 .rf-summary__val {
   font-size: var(--font-size-sm);
   font-weight: 600;
@@ -167,6 +171,10 @@
 
 .rf-summary__val--highlight {
   color: var(--color-primary);
+}
+
+.rf-summary__val--discount {
+  color: #16a34a;
 }
 
 .rf-summary__divider {
@@ -201,6 +209,64 @@
   font-size: var(--font-size-xs);
   color: var(--color-text-muted);
   line-height: 1.6;
+}
+
+/* ---- Code promo dans le résumé (même style que l'original) ---- */
+.rf-summary__promo-row {
+  display: flex;
+  gap: var(--spacing-2);
+}
+
+.rf-summary__promo-row .rf-input {
+  flex: 1;
+  min-width: 0;
+}
+
+.rf-summary__promo-btn {
+  padding: 0.55rem 0.9rem;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--color-primary);
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  font-family: var(--font-family);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 76px;
+}
+
+.rf-summary__promo-btn:hover:not(:disabled) {
+  opacity: 0.88;
+}
+
+.rf-summary__promo-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.rf-summary__promo-btn--remove {
+  background: transparent;
+  border-color: var(--color-border);
+  color: var(--color-text-secondary);
+  min-width: 36px;
+  padding: 0.55rem 0.6rem;
+}
+
+.rf-summary__promo-btn--remove:hover:not(:disabled) {
+  border-color: #ef4444;
+  color: #ef4444;
+  opacity: 1;
+}
+
+.rf-summary__promo-success {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: #16a34a;
 }
 
 /* Trust badges */
@@ -303,7 +369,6 @@
   border-color: #ef4444;
 }
 
-/* Surcharge react-phone-number-input */
 .rf-phone-input {
   display: flex !important;
   align-items: center !important;
@@ -312,7 +377,6 @@
   padding: 0 1rem 0 0.75rem;
 }
 
-/* Sélecteur de pays */
 .rf-phone-input .PhoneInputCountry {
   display: flex;
   align-items: center;
@@ -357,7 +421,6 @@
   margin-left: 2px;
 }
 
-/* Champ numéro */
 .rf-phone-input .PhoneInputInput {
   flex: 1;
   border: none !important;
@@ -460,6 +523,47 @@
   animation: rf-spin 0.7s linear infinite;
 }
 
+/* ---- Spinner foncé pour fond blanc ---- */
+.rf-spinner--dark {
+  border-color: rgba(0, 0, 0, 0.15);
+  border-top-color: var(--color-primary);
+  width: 14px;
+  height: 14px;
+}
+
+/* Promo Toggle — classes originales */
+.rf-promo-toggle {
+  margin-top: -4px;
+}
+
+.rf-promo-toggle__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-primary);
+  cursor: pointer;
+  padding: 8px 0;
+  transition: color var(--transition-fast);
+}
+
+.rf-promo-toggle__btn:hover {
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+}
+
+.rf-promo-field {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 @keyframes rf-spin {
   to { transform: rotate(360deg); }
 }
@@ -555,14 +659,17 @@
    RESPONSIVE
    ============================================ */
 
-/* Tablette : colonne résumé plus étroite */
+/* Desktop : footer mobile caché */
+.rf-footer--mobile {
+  display: none;
+}
+
 @media (max-width: 900px) {
   .rf-layout {
     grid-template-columns: 1fr 280px;
   }
 }
 
-/* Mobile : une seule colonne, résumé en bas */
 @media (max-width: 640px) {
   .rf-container {
     max-width: 100%;
@@ -572,62 +679,44 @@
     grid-template-columns: 1fr;
   }
 
-  /* Sur mobile, résumé passe avant le formulaire grâce à order */
-  .rf-summary {
-    position: static;
-    order: -1;
+  /* Résumé passe après la card (order 2), card en premier (order 1) */
+  .rf-card {
+    order: 1;
+    padding: var(--spacing-6);
   }
 
-  .rf-card {
-    padding: var(--spacing-6);
+  .rf-summary {
+    position: static;
+    order: 2;
+  }
+
+  /* Sur mobile : cacher le footer dans la card, montrer celui du résumé */
+  .rf-footer--desktop {
+    display: none;
+  }
+
+  .rf-footer--mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-4);
+    padding-top: var(--spacing-4);
+    border-top: 1px solid var(--color-border-light);
+  }
+
+  .rf-footer--mobile .rf-submit {
+    width: 100%;
   }
 
   .rf-row {
     grid-template-columns: 1fr;
   }
-
-  .rf-footer {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .rf-submit {
-    width: 100%;
-  }
-}
-
-/* Promo Code Toggle */
-.rf-promo-toggle {
-  margin-top: -4px;
-}
-
-.rf-promo-toggle__btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: none;
-  border: none;
-  font-size: var(--font-size-sm);
-  font-weight: 500;
-  color: var(--color-primary);
-  cursor: pointer;
-  padding: 8px 0;
-  transition: color var(--transition-fast);
-}
-
-.rf-promo-toggle__btn:hover {
-  color: var(--color-primary-dark);
-  text-decoration: underline;
-}
-
-.rf-promo-field {
-  animation: fadeIn 0.3s ease;
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(-8px);
   }
   to {
     opacity: 1;
