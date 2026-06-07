@@ -295,10 +295,11 @@
   }
 
   .hero-subtitle {
-    font-size: 0.9rem;
+    font-size: 0.89rem;
     max-width: 100%;
   }
 
+  
   .hero-cta__btn {
     width: 100%;
     justify-content: center;
