@@ -36,17 +36,18 @@
     "title_start": "Access your",
     "title_accent": "subscriptions",
     "title_end": "in 3 steps.",
+    "step_label": "Step",
     "step1": {
-      "title": "Choose your service",
-      "desc": "Browse our catalog of 30+ premium services. Netflix, Spotify, ChatGPT… everything is there."
+      "title": "Create your account",
+      "desc": "Enter your email and receive a confirmation link. One click to activate your account. You then log in via a OTP code sent to your address."
     },
     "step2": {
-      "title": "Join a group",
-      "desc": "Find an existing group or create your own. All members are verified. Your safety is our obsession."
+      "title": "Choose and book",
+      "desc": "Browse the catalog, select your subscription and fill in the booking form with your name and WhatsApp number."
     },
     "step3": {
-      "title": "Enjoy and save",
-      "desc": "Access your service immediately and save up to 75% every month. It's that simple."
+      "title": "Pay and receive your access",
+      "desc": "Our support contacts you on WhatsApp to finalize payment. Once settled, you receive your credentials directly in the conversation."
     }
   },
   "fs": {
@@ -237,31 +238,31 @@
     "cat_paiement": "Payment",
     "cat_compte": "My account",
     "q_what_is_bonemia": "What is Bonemia?",
-    "a_what_is_bonemia": "Bonemia is a platform that gives you access to 30+ premium subscriptions (Netflix, Spotify, ChatGPT…) by sharing costs with other verified members. Save up to 75% on your favourite digital subscriptions.",
+    "a_what_is_bonemia": "Bonemia is a platform that gives you access to 30+ premium subscriptions (Netflix, Spotify, ChatGPT…) at reduced prices. Save up to 75% on your favourite digital subscriptions.",
     "q_how_safe": "Is it safe?",
-    "a_how_safe": "Safety is our obsession. All members are verified, payments are encrypted, and we never share your personal information. Every group is managed under strict rules to guarantee a reliable experience.",
+    "a_how_safe": "Safety is our priority. Payments are encrypted and we never share your personal information.",
     "q_who_can_join": "Who can join Bonemia?",
-    "a_who_can_join": "Any adult with a valid payment method can create an account. Bonemia is accessible from most French-speaking and English-speaking countries.",
+    "a_who_can_join": "Anyone with a valid payment method can create an account. Bonemia is accessible from most French-speaking and English-speaking countries.",
     "q_which_services": "Which services are available?",
     "a_which_services": "We offer 30+ services: Netflix, Spotify, ChatGPT Plus, Claude, Disney+, YouTube Premium, Adobe Creative Cloud, and many more. The catalog grows regularly.",
     "q_how_to_access": "How do I access a subscription?",
-    "a_how_to_access": "Choose a service from our catalog, join an existing group or create your own, complete your payment, and get immediate access to your service. Everything happens in 3 simple steps.",
+    "a_how_to_access": "Create your account, choose a service from our catalog, fill in the booking form, and our support contacts you on WhatsApp to finalize payment and send your credentials.",
     "q_cancel_anytime": "Can I cancel at any time?",
-    "a_cancel_anytime": "Yes. You can leave a group or cancel your subscription at any time from your personal dashboard. Access remains active until the end of the period already paid for.",
+    "a_cancel_anytime": "Yes. You can cancel your subscription at any time from your personal dashboard. Access remains active until the end of the period already paid for.",
     "q_share_account": "How does account sharing work?",
-    "a_share_account": "Bonemia fully manages group coordination for you. You don't need to worry about the technical details — we handle everything to ensure your access is smooth and reliable.",
+    "a_share_account": "Bonemia fully manages access for you. You don't need to worry about the technical details — we handle everything to ensure your access is smooth and reliable.",
     "q_payment_methods": "What payment methods are accepted?",
-    "a_payment_methods": "We accept bank cards (Visa, Mastercard), mobile payments (Orange Money, Wave, MTN) and other local methods depending on your country.",
+    "a_payment_methods": "We accept mobile payments (Orange Money, Wave, MTN) and other local methods depending on your country.",
     "q_refund": "What is the refund policy?",
     "a_refund": "If you experience a technical issue attributable to Bonemia within 48 hours of your payment, we will issue a full refund. Contact our support team with the details of your situation.",
     "q_billing_cycle": "How does billing work?",
-    "a_billing_cycle": "Billing is monthly. You receive a summary by email before each renewal. No hidden fees — the displayed price is the final price.",
-    "q_change_password": "How do I change my password?",
-    "a_change_password": "Go to Settings → Security from your dashboard. You can also reset your password from the login page via \"Forgot password\".",
+    "a_billing_cycle": "Billing is monthly. No hidden fees — the displayed price is the final price.",
+    "q_change_password": "How do I log in?",
+    "a_change_password": "Login is done via OTP. Enter your email, receive a 6-digit code, enter it and you're in.",
     "q_delete_account": "How do I delete my account?",
     "a_delete_account": "You can request account deletion from Settings → My account → Delete my account. This action is irreversible and all your data will be erased within 30 days.",
     "q_multiple_devices": "Can I use Bonemia on multiple devices?",
-    "a_multiple_devices": "Your Bonemia account is accessible from any browser. The number of devices allowed for each service depends on the service itself (Netflix, Spotify…) and the group type.",
+    "a_multiple_devices": "Your Bonemia account is accessible from any browser. The number of devices allowed depends on the service itself (Netflix, Spotify…).",
     "contact_eyebrow": "Support",
     "contact_title": "Didn't find your answer?",
     "contact_sub": "Our team replies within 24 hours. Describe your issue and we'll do our best to help.",
@@ -351,6 +352,10 @@
     "field_promo_code": "Promo code",
     "ph_promo_code": "e.g: BONEMIA2024",
     "hint_promo_code": "Enter your promo code to get a discount",
+    "apply_promo": "Apply",
+    "promo_invalid": "Invalid or expired code",
+    "subtotal": "Subtotal",
+    "discount": "Discount",
     "confirm_view_all": "View all subscriptions",
     "confirm_back_home": "Back to home"
   },

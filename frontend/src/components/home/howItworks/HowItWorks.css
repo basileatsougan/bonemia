@@ -15,7 +15,7 @@
   gap: var(--spacing-6);
 }
 
-/* ---- Badge ---- */
+/* ── Badge ── */
 .hiw-badge {
   display: inline-flex;
   align-items: center;
@@ -28,145 +28,173 @@
   background: var(--color-white);
 }
 
-/* ---- Title ---- */
+/* ── Titre ── */
 .hiw-title {
-  font-size: clamp(1.9rem, 4vw, 2.9rem);
+  font-size: clamp(1.75rem, 4vw, 2.6rem);
   font-weight: 500;
   line-height: 1.2;
   color: var(--color-text);
   letter-spacing: -0.02em;
-  max-width: 600px;
   text-align: center;
+  max-width: 600px;
 }
 
 .hiw-title__accent {
   color: var(--color-primary);
 }
 
-/* ---- Cards grid ---- */
-.hiw-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0;
+.hiw-subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  text-align: center;
+  max-width: 420px;
+  line-height: 1.7;
+  margin-top: calc(-1 * var(--spacing-2));
+}
+
+/* ============================================
+   GRILLE
+   ============================================ */
+
+.hiw-grid {
+  display: flex;
+  align-items: flex-start;
   width: 100%;
-  margin-top: var(--spacing-4);
+  margin-top: var(--spacing-6);
+}
+
+/* ── Flèche ── */
+.hiw-arrow {
+  flex-shrink: 0;
+  width: 72px;
+  padding: 0 4px;
+  margin-top: 86px;
+}
+
+.hiw-arrow svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.hiw-arrow--flip {
+  transform: scaleY(-1);
+}
+
+/* ── Step ── */
+.hiw-step {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+  align-self: stretch;
+}
+
+/* ── Card ── */
+.hiw-step__card {
+  background: var(--color-white);
   border: 1px solid var(--color-border-light);
   border-radius: var(--radius-xl);
   overflow: hidden;
-}
-
-/* ---- Card ---- */
-.hiw-card {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: var(--spacing-4);
-  padding: var(--spacing-8);
-  background: var(--color-white);
-  border-right: 1px solid var(--color-border-light);
-  transition: background var(--transition-base);
+  height: 100%;
+  transition: border-color var(--transition-base);
 }
 
-.hiw-card:last-child {
-  border-right: none;
+.hiw-step__card:hover {
+  border-color: var(--color-border);
 }
 
-.hiw-card:hover {
+/* Zone illustration — juste le grand chiffre */
+.hiw-step__illu {
   background: var(--color-bg-light);
-}
-
-/* ---- Card header (counter + arrow) ---- */
-.hiw-card__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.hiw-card__counter {
-  font-size: var(--font-size-xs);
-  font-weight: 600;
-  color: var(--color-text-muted);
-  letter-spacing: 0.05em;
-}
-
-.hiw-card__arrow {
-  width: 32px;
-  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  border: 1.5px solid var(--color-border);
-  font-size: 0.85rem;
-  color: var(--color-text-secondary);
-  flex-shrink: 0;
+  min-height: 180px;
+  flex: 1;
 }
 
-/* ---- Icon ---- */
-.hiw-card__icon {
-  width: 44px;
-  height: 44px;
-  background: var(--color-bg-light);
-  border-radius: var(--radius-md);
+.hiw-step__big-num {
+  font-size: 6rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--color-primary);
+  opacity: 0.15;
+  user-select: none;
+}
+
+/* Zone texte */
+.hiw-step__body {
+  padding: var(--spacing-5) var(--spacing-5) var(--spacing-6);
   display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-text);
-  flex-shrink: 0;
+  flex-direction: column;
+  gap: var(--spacing-2);
 }
 
-/* ---- Text ---- */
-.hiw-card__title {
+.hiw-step__title {
   font-size: var(--font-size-base);
-  font-weight: 550;
+  font-weight: 700;
   color: var(--color-text);
   line-height: 1.3;
-  text-align: left;
 }
 
-.hiw-card__desc {
-  font-size: 0.9rem;
-  font-weight: 400;
-  color: #1e293b;
+.hiw-step__desc {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
   line-height: 1.7;
-  margin-top: calc(-1 * var(--spacing-2));
-  text-align: left;
 }
 
 /* ============================================
    RESPONSIVE
    ============================================ */
-@media (max-width: 768px) {
-  .hiw-section {
-    padding: var(--spacing-16) 0;
+
+@media (max-width: 900px) {
+  .hiw-arrow {
+    width: 48px;
+    margin-top: 78px;
   }
 
-  .hiw-cards {
-    grid-template-columns: 1fr;
-    border-radius: var(--radius-lg);
-  }
-
-  .hiw-card {
-    border-right: none;
-    border-bottom: 1px solid var(--color-border-light);
-  }
-
-  .hiw-card:last-child {
-    border-bottom: none;
+  .hiw-badge {
+    margin-top: 25px;
   }
 }
 
-@media (max-width: 480px) {
-  .hiw-container {
+@media (max-width: 640px) {
+  .hiw-section {
+    padding: var(--spacing-14) 0;
+  }
+
+  .hiw-grid {
+    flex-direction: column;
     gap: var(--spacing-5);
+    margin-top: var(--spacing-4);
   }
 
-  .hiw-title {
-    font-size: 1.75rem;
+  .hiw-arrow {
+    display: none;
   }
 
-  .hiw-card {
-    padding: var(--spacing-6);
+  .hiw-step {
+    align-self: auto;
+  }
+
+  .hiw-step__card {
+    height: auto;
+  }
+
+  .hiw-step__illu {
+    min-height: 130px;
+  }
+
+  .hiw-step__big-num {
+    font-size: 5rem;
+  }
+
+  .hiw-badge {
+    margin-top: 25px;
   }
 }
