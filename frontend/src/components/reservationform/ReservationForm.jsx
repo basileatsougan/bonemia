@@ -8,6 +8,15 @@ import ReservationConfirm from "../reservationconfirm/ReservationConfirm";
 import { useAuth } from "../../contexts/AuthContext";
 import { API_BASE_URL } from "../../config/api";
 
+// Passe à false quand le backend promo est prêt
+const USE_MOCK_PROMO = true;
+
+const MOCK_PROMO_CODES = {
+  "TEST20":    { valid: true, discount_percentage: 20,  code: "TEST20" },
+  "BONEMIA50": { valid: true, discount_percentage: 50,  code: "BONEMIA50" },
+  "VIP100":    { valid: true, discount_percentage: 100, code: "VIP100" },
+};
+
 const MONTHS = [1, 2, 3, 6, 12];
 
 const ReservationForm = () => {
@@ -49,11 +58,10 @@ const ReservationForm = () => {
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
 
-  // Promo code state
   const [showPromoCode, setShowPromoCode] = useState(false);
   const [promoInput, setPromoInput] = useState("");
-  const [promoStatus, setPromoStatus] = useState(null); // null | 'valid' | 'invalid' | 'loading'
-  const [promoData, setPromoData] = useState(null); // { discount_percentage, code }
+  const [promoStatus, setPromoStatus] = useState(null);
+  const [promoData, setPromoData] = useState(null);
 
   useEffect(() => {
     if (user) {
@@ -80,7 +88,6 @@ const ReservationForm = () => {
     return null;
   }
 
-  const userEmail = user?.email || "";
   const monthlyPrice = parseInt(subscription.price_cfa, 10);
   const isFormValid = form.fullName.trim() !== "" && form.whatsapp !== "";
 
@@ -96,18 +103,28 @@ const ReservationForm = () => {
     setErrors((prev) => ({ ...prev, [field]: false }));
   };
 
-  // Promo code handlers
+  const validatePromoMock = async (code) => {
+    await new Promise(resolve => setTimeout(resolve, 700));
+    return MOCK_PROMO_CODES[code.toUpperCase()] || { valid: false };
+  };
+
+  const validatePromoReal = async (code) => {
+    const response = await fetch(`${API_BASE_URL}/api/promo-codes/validate/`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ code }),
+    });
+    return await response.json();
+  };
+
   const handleApplyPromo = async () => {
     if (!promoInput.trim()) return;
     setPromoStatus('loading');
-
     try {
-      const response = await fetch(`${API_BASE_URL}/api/promo-codes/validate/`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ code: promoInput.trim() }),
-      });
-      const data = await response.json();
+      const data = USE_MOCK_PROMO
+        ? await validatePromoMock(promoInput.trim())
+        : await validatePromoReal(promoInput.trim());
+
       if (data.valid) {
         setPromoStatus('valid');
         setPromoData(data);
@@ -143,7 +160,6 @@ const ReservationForm = () => {
     const e = validate();
     if (Object.keys(e).length > 0) { setErrors(e); return; }
     setSending(true);
-
     try {
       const token = localStorage.getItem('access_token');
       const response = await fetch(`${API_BASE_URL}/api/inquiries/`, {
@@ -159,13 +175,8 @@ const ReservationForm = () => {
           promo_code: form.promoCode || null,
         }),
       });
-
-      if (!response.ok) {
-        throw new Error("Erreur lors de l'envoi");
-      }
-
+      if (!response.ok) throw new Error("Erreur lors de l'envoi");
       await new Promise(resolve => setTimeout(resolve, 3000));
-
     } catch (err) {
       console.error(err);
     } finally {
@@ -217,7 +228,6 @@ const ReservationForm = () => {
 
         <div className="rf-layout">
 
-          {/* ---- Formulaire gauche ---- */}
           <div className="rf-card">
 
             <div className="rf-field">
@@ -276,7 +286,6 @@ const ReservationForm = () => {
               </div>
             </div>
 
-            {/* Bouton submit visible uniquement desktop (dans la footer card) */}
             <div className="rf-footer rf-footer--desktop">
               <p className="rf-footer__note">{t("reservation.required_note")}</p>
               <button
@@ -298,7 +307,6 @@ const ReservationForm = () => {
 
           </div>
 
-          {/* ---- Résumé droite ---- */}
           <aside className="rf-summary">
             <div className="rf-summary__inner">
 
@@ -321,7 +329,6 @@ const ReservationForm = () => {
                 <span className="rf-summary__val">{form.whatsapp || "—"}</span>
               </div>
 
-              {/* ---- Code promo ---- */}
               <div className="rf-promo-toggle">
                 <button
                   type="button"
@@ -418,7 +425,6 @@ const ReservationForm = () => {
                 <span className="rf-summary__price-value">{formatPrice(finalPrice)}</span>
               </div>
 
-              {/* Bouton submit visible uniquement mobile (dans le résumé, après total) */}
               <div className="rf-footer rf-footer--mobile">
                 <p className="rf-footer__note">{t("reservation.required_note")}</p>
                 <button
