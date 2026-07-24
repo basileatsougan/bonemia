@@ -36,7 +36,7 @@ export const AuthProvider = ({ children }) => {
 
       if (response.ok) {
         const data = await response.json();
-        console.log("fetchUser - user data:", data);
+        // console.log("fetchUser - user data:", data);
         setUser(data);
       } else {
         console.log("fetchUser - token invalide, deconnexion");

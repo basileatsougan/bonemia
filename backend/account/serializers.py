@@ -22,7 +22,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['id', 'email', 'name', 'phone_number', 'created_at']
-        read_only_fields = ['id', 'created_at']
+        read_only_fields = ['id','email', 'created_at']
 
         
 def send_verification_code_email(user, *, subject="Votre code de verification Bonemia"):

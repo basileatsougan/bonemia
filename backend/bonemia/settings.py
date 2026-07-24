@@ -57,6 +57,7 @@ DJOSER = {
     'SERIALIZERS': {
         'user_create': 'account.serializers.PasswordlessUserCreateSerializer',
         'user': 'account.serializers.CustomUserSerializer',
+        'current_user': 'account.serializers.CustomUserSerializer',
     },
 }
 

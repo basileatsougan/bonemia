@@ -48,7 +48,7 @@ const ReservationForm = () => {
     }
   }, [slug]);
 
-console.log("The user info is: ", user);
+// console.log("The user info is: ", user);
   const [form, setForm] = useState({
     fullName: user?.name || "",
     whatsapp: user?.phone_number || "",
