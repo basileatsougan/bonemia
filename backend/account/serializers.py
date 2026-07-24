@@ -18,6 +18,13 @@ logger = logging.getLogger(__name__)
 User = get_user_model()
 
 
+class CustomUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'email', 'name', 'phone_number', 'created_at']
+        read_only_fields = ['id', 'created_at']
+
+        
 def send_verification_code_email(user, *, subject="Votre code de verification Bonemia"):
     """Persist a new code on ``user`` and email it. Raises ValidationError if mail fails."""
     code = user.generate_verification_code()

@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.db import models
 from django.utils.text import slugify
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class Subscription(models.Model):
@@ -51,6 +52,11 @@ class Inquiry(models.Model):
         Subscription,
         on_delete=models.PROTECT,
         related_name="inquiries",
+    )
+    reservation_duration = models.PositiveSmallIntegerField(
+        verbose_name="Durée de la réservation (mois)",
+        validators=[MinValueValidator(1), MaxValueValidator(72)],
+        default=1,
     )
     promo_code = models.CharField(max_length=50, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)

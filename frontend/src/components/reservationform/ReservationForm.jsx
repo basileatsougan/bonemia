@@ -48,6 +48,7 @@ const ReservationForm = () => {
     }
   }, [slug]);
 
+console.log("The user info is: ", user);
   const [form, setForm] = useState({
     fullName: user?.name || "",
     whatsapp: user?.phone_number || "",
@@ -172,6 +173,7 @@ const ReservationForm = () => {
           name: form.fullName,
           phone_number: form.whatsapp,
           subscription: subscription.id,
+          reservation_duration: form.months,
           promo_code: form.promoCode || null,
         }),
       });

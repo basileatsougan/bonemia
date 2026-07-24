@@ -12,7 +12,7 @@ class SubscriptionSerializer(serializers.ModelSerializer):
 class InquirySerializer(serializers.ModelSerializer):
     class Meta:
         model = Inquiry
-        fields = ["id", "name", "phone_number", "subscription", "promo_code", "created_at"]
+        fields = ["id", "name", "phone_number", "subscription", "reservation_duration", "promo_code", "created_at"]
         read_only_fields = ["id", "created_at"]
 
     def create(self, validated_data):

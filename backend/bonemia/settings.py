@@ -56,6 +56,7 @@ DJOSER = {
     'SEND_ACTIVATION_EMAIL': False,
     'SERIALIZERS': {
         'user_create': 'account.serializers.PasswordlessUserCreateSerializer',
+        'user': 'account.serializers.CustomUserSerializer',
     },
 }
 
