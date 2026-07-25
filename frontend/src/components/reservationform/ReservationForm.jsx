@@ -74,6 +74,25 @@ const ReservationForm = () => {
     }
   }, [user]);
 
+    useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const refCode = urlParams.get('ref') || urlParams.get('promo');
+    if (refCode) {
+      setShowPromoCode(true);
+      setPromoInput(refCode);
+      setPromoStatus('loading');
+      validatePromoCode(refCode).then(data => {
+        if (data.valid) {
+          setPromoStatus('valid');
+          setPromoData(data);
+          handleChange("promoCode", data.code);
+        } else {
+          setPromoStatus('invalid');
+          setPromoData(null);
+        }
+      });
+    }
+  }, []);
   if (loadingService) {
     return (
       <section className="rf-section">
@@ -104,27 +123,50 @@ const ReservationForm = () => {
     setErrors((prev) => ({ ...prev, [field]: false }));
   };
 
-  const validatePromoMock = async (code) => {
-    await new Promise(resolve => setTimeout(resolve, 700));
-    return MOCK_PROMO_CODES[code.toUpperCase()] || { valid: false };
+  const validatePromoCode = async (code) => {
+    const codeClean = code.trim();
+    if (!codeClean) return { valid: false };
+
+    // 1. Try real referral API endpoint
+    try {
+      const token = localStorage.getItem("access_token");
+      const headers = { 'Content-Type': 'application/json' };
+      if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
+      }
+      const response = await fetch(`${API_BASE_URL}/api/referral/validate-code/`, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({ code: codeClean }),
+      });
+      const data = await response.json();
+      if (response.ok && data.valid) {
+        return {
+          valid: true,
+          discount_percentage: data.discount_percent || 10,
+          code: data.code
+        };
+      }
+    } catch (err) {
+      console.warn("Erreur lors de la validation du code de parrainage:", err);
+    }
+
+    // 2. Fallback to mock promo codes
+    const mock = MOCK_PROMO_CODES[codeClean.toUpperCase()];
+    if (mock) {
+      return mock;
+    }
+
+    return { valid: false };
   };
 
-  const validatePromoReal = async (code) => {
-    const response = await fetch(`${API_BASE_URL}/api/promo-codes/validate/`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ code }),
-    });
-    return await response.json();
-  };
+
 
   const handleApplyPromo = async () => {
     if (!promoInput.trim()) return;
     setPromoStatus('loading');
     try {
-      const data = USE_MOCK_PROMO
-        ? await validatePromoMock(promoInput.trim())
-        : await validatePromoReal(promoInput.trim());
+      const data = await validatePromoCode(promoInput.trim());
 
       if (data.valid) {
         setPromoStatus('valid');

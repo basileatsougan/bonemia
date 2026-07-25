@@ -19,10 +19,22 @@ User = get_user_model()
 
 
 class CustomUserSerializer(serializers.ModelSerializer):
+    referral_code = serializers.SerializerMethodField()
+
     class Meta:
         model = User
-        fields = ['id', 'email', 'name', 'phone_number', 'created_at']
-        read_only_fields = ['id','email', 'created_at']
+        fields = ['id', 'email', 'name', 'phone_number', 'created_at', 'referral_code']
+        read_only_fields = ['id', 'email', 'created_at', 'referral_code']
+
+    def get_referral_code(self, obj):
+        try:
+            if hasattr(obj, 'referral_code_obj'):
+                return obj.referral_code_obj.code
+            from referral.models import ReferralCode
+            code_obj, _ = ReferralCode.objects.get_or_create(user=obj)
+            return code_obj.code
+        except Exception:
+            return None
 
         
 def send_verification_code_email(user, *, subject="Votre code de verification Bonemia"):

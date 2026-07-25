@@ -275,6 +275,19 @@
     "contact_submit": "Envoyer le message",
     "contact_sent": "Message envoyé ! Nous vous répondons sous 24 h."
   },
+  "cta_referral": {
+    "badge": "Programme de parrainage",
+    "title": "Parrainez vos proches & économisez ensemble !",
+    "sub": "Offrez 10 % de réduction à vos amis sur leur premier abonnement. En retour, recevez 10 % de réduction (ou 1 000 FCFA de crédit) sur votre prochain renouvellement dès leur inscription !",
+    "your_code": "Votre code de parrainage",
+    "copy_code": "Copier le code",
+    "copied": "Code copié !",
+    "share_whatsapp": "Partager sur WhatsApp",
+    "get_code": "Obtenir mon code de parrainage",
+    "generate_code": "Générer mon code de parrainage",
+    "benefit_friend": "−10% pour votre ami",
+    "benefit_owner": "−10% ou 1 000 FCFA pour vous"
+  },
   "cta_propose": {
     "label": "Vous ne trouvez pas ce que vous cherchez ?",
     "title": "Proposez un service qui n'existe pas encore dans notre catalogue.",

@@ -275,6 +275,19 @@
     "contact_submit": "Send message",
     "contact_sent": "Message sent! We'll reply within 24 hours."
   },
+  "cta_referral": {
+    "badge": "Referral Program",
+    "title": "Refer your friends & save together!",
+    "sub": "Give a 10% discount to your friends on their first subscription. In return, get a 10% discount (or 1,000 FCFA credit) on your next renewal when they sign up!",
+    "your_code": "Your referral code",
+    "copy_code": "Copy code",
+    "copied": "Code copied!",
+    "share_whatsapp": "Share on WhatsApp",
+    "get_code": "Get my referral code",
+    "generate_code": "Generate my referral code",
+    "benefit_friend": "−10% for your friend",
+    "benefit_owner": "−10% or 1,000 FCFA for you"
+  },
   "cta_propose": {
     "label": "Can't find what you're looking for?",
     "title": "Suggest a service that isn't in our catalog yet.",

@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'account',
     'inquiries',
+    'referral',
 ]
 
 AUTH_USER_MODEL = 'account.CustomUser'

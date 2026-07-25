@@ -1,0 +1,273 @@
+/* ============================================
+   BONEMIA — CTAReferral
+   ============================================ */
+
+.cta-referral {
+  width: 100%;
+  padding: var(--spacing-20) 0;
+  background-color: var(--color-white);
+  border-top: 1px solid var(--color-border-light);
+}
+
+.cta-referral__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-8);
+  background: linear-gradient(135deg, #ffffff 0%, #f4f6ff 100%);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-10) var(--spacing-12);
+  box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-referral__inner::before {
+  content: "";
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, rgba(255, 255, 255, 0) 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.cta-referral__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  max-width: 580px;
+}
+
+.cta-referral__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1.2rem;
+  border-radius: var(--radius-full);
+  border: 1.5px solid rgba(99, 102, 241, 0.2);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: #4f46e5;
+  background: rgba(99, 102, 241, 0.06);
+  width: fit-content;
+}
+
+.cta-referral__icon {
+  width: 16px;
+  height: 16px;
+  stroke: #4f46e5;
+}
+
+.cta-referral__title {
+  font-size: clamp(1.4rem, 3vw, 2.1rem);
+  font-weight: 600;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.cta-referral__sub {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+.cta-referral__benefits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.cta-referral__benefit-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #ffffff;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-md, 8px);
+  border: 1px solid var(--color-border-light);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.cta-referral__benefit-pill {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #16a34a;
+  background: #dcfce7;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+}
+
+.cta-referral__benefit-pill--owner {
+  color: #4f46e5;
+  background: #e0e7ff;
+}
+
+.cta-referral__benefit-text {
+  color: var(--color-text-secondary);
+}
+
+.cta-referral__action {
+  flex-shrink: 0;
+  min-width: 280px;
+}
+
+/* Card */
+.cta-referral__card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  background: #ffffff;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-lg, 12px);
+  padding: 1.25rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.cta-referral__card--guest {
+  align-items: stretch;
+  text-align: center;
+  padding: 1.5rem;
+}
+
+.cta-referral__card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.cta-referral__code-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+}
+
+.cta-referral__stats-pill {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #4f46e5;
+  background: #e0e7ff;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full, 9999px);
+}
+
+.cta-referral__code-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f8fafc;
+  border: 1px stroke #e2e8f0;
+  border: 1.5px dashed #cbd5e1;
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem 0.5rem 1rem;
+}
+
+.cta-referral__code-value {
+  font-family: var(--font-mono, monospace), sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #0f172a;
+}
+
+.cta-referral__copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: #0f172a;
+  color: #ffffff;
+  border: none;
+  padding: 0.45rem 0.85rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cta-referral__copy-btn:hover {
+  background: #1e293b;
+  transform: translateY(-1px);
+}
+
+.cta-referral__copy-btn.copied {
+  background: #16a34a;
+}
+
+.btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: #25d366;
+  color: #ffffff;
+  border: none;
+  padding: 0.65rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.btn-whatsapp:hover {
+  background: #20bd5a;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+  transform: translateY(-1px);
+}
+
+.cta-referral__code-preview {
+  background: #f1f5f9;
+  border: 2px dashed #cbd5e1;
+  border-radius: 8px;
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.cta-referral__code-preview-text {
+  font-family: var(--font-mono, monospace), sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #64748b;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 868px) {
+  .cta-referral__inner {
+    flex-direction: column;
+    align-items: stretch;
+    padding: var(--spacing-8) var(--spacing-6);
+  }
+
+  .cta-referral__action {
+    width: 100%;
+    min-width: unset;
+  }
+}
+
+@media (max-width: 480px) {
+  .cta-referral {
+    padding: var(--spacing-12) 0;
+  }
+
+  .cta-referral__title {
+    font-size: 1.35rem;
+  }
+
+  .cta-referral__code-value {
+    font-size: 1rem;
+  }
+}

@@ -7,6 +7,7 @@ import HowItWorks from "../../components/home/howItworks/HowItWorks";
 import FeaturedSubscriptions from "../../components/home/featuredsubscriptions/FeaturedSubscriptions";
 import Footer from "../../components/home/footer/Footer";
 import CTAPropose from "../../components/home/ctapropose/CTAPropose";
+import CTAReferral from "../../components/home/ctareferral/CTAReferral";
 
 const HomePage = () => {
   const { t } = useTranslation();
@@ -23,6 +24,7 @@ const HomePage = () => {
         <HowItWorks />
         <FeaturedSubscriptions />
         <CTAPropose />
+        <CTAReferral />
       </main>
       <Footer />
     </>
